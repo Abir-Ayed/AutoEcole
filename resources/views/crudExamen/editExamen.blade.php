@@ -38,9 +38,9 @@
         <!-- Logo -->
         <a href="../../index2.html" class="logo">
             <!-- mini logo for sidebar mini 50x50 pixels -->
-            <span class="logo-mini"><b>A</b>LT</span>
+            <span class="logo-mini"><b>A</b>EC</span>
             <!-- logo for regular state and mobile devices -->
-            <span class="logo-lg"><b>Admin</b>LTE</span>
+            <span class="logo-lg"><b>Auto Ecole</b></span>
         </a>
         <!-- Header Navbar: style can be found in header.less -->
         <nav class="navbar navbar-static-top">
@@ -146,7 +146,7 @@
         <section class="content">
             <div class="box box-warning">
                 <div class="box-header with-border">
-                    <h3 class="box-title">Ajouter moniteurs</h3>
+                    <h3 class="box-title">Ajouter examens</h3>
                 </div>
                 <!-- /.box-header -->
                 <div class="box-body">
@@ -171,7 +171,7 @@
 
                         <div class="form-group">
                             <label>Date Examen</label>
-                            <input type="date" class="form-control" name="date_examen" placeholder=" entrer date " value="{{$newExamen['Date_Examen']}}">
+                            <input type="date" class="form-control" name="Date_Examen" placeholder=" entrer date " value="{{$newExamen['Date_Examen']}}">
 
                         </div>
                         <div class="form-group">
@@ -187,7 +187,7 @@
 
                         <div class="form-group">
                             <label>Horaire</label>
-                            <input type="time" class="form-control"  name="horaire" placeholder="entrer horaire" value="{{$newExamen['horaire']}}">
+                            <input type="time" class="form-control"  name="horaire" placeholder="entrer horaire" value="{{$newExamen['Horaire']}}">
 
                         </div>
 
@@ -418,12 +418,19 @@
                 <!-- sidebar menu: : style can be found in sidebar.less -->
                 <ul class="sidebar-menu" data-widget="tree">
 
-                    <li class="treeview">
+                   <li class="treeview">
                     <a href="#">
                         <i class="fa fa-dashboard"></i> <span>Acceuil</span>
 
                     </a>
 </li>
+ <li class="active">
+                   <a href="auto_ecole">
+                      <i class="fa fa-fw fa-home"></i>
+                        <span>Auto Ecole</span>
+
+              </a>
+                </li>
  <li>
                    <a href="crudMoniteur">
                         <i class="fa fa-fw fa-users"></i>  
@@ -473,24 +480,35 @@
 
                 </li>
                  
-                <li class="treeview">
+                <li class="crudResultat">
                                     <a href="#">
                                         <i class="fa fa-fw fa-graduation-cap"></i> <span>Résultats</span>
-                                        <span class="pull-right-container">
-                  <i class="fa fa-angle-left pull-right"></i>
+                                       
                 </span>
                                     </a>
 
                                 </li> 
                 
-                <li>
-                    <a href="#">
-                        <i class="fa fa-files-o"></i>
-                        <span> Consulter Paiements</span>
+                <li >
+                                    <a href="crudFacture">
+                                        <i class="fa fa-fw fa-calculator"></i> <span>Facture</span>
+
+                </span>
+                                    </a>
+
+                                </li> 
+   <li >
+
+                    <a href="crudAlertes">
+                      <i class="fa fa-bell-o"></i>
+
+                        <span> Alertes</span>
 </a>
                     </li>
+     
 
- 
+
+
      
 
             </section>

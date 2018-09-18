@@ -235,18 +235,19 @@ $('#submit').html('bonjjour');
                                     </button></a>
 
                                 </div>
-
+  
                                 <!-- /.box-header -->
                                 <div class="box-body">
                                     <table id="example2" class="table table-bordered table-hover">
                                         <thead>
                                         <tr>
-                                            <th>Liste moniteurs</th>
-                                            <th>Type de cours</th>
-                                            <th>Date de cours</th>
-                                            <th>Horaire</th>
-                                            <th>Durée</th>
-                                            <th>Montant($)</th>
+                                                <th>Type de cours</th>
+                                               <th>Liste moniteurs</th>
+                                               <th>Liste candidats</th>
+                                               <th>Date de cours</th>
+                                                 <th>Horaire</th>
+                                                 <th>Durée</th>
+                                                <th>Montant($)</th>
                                           
                                           <th>Action</th>
                                         </tr>
@@ -257,15 +258,18 @@ $('#submit').html('bonjjour');
 
                                    @foreach($seance as $newSeance)
                                         <tr>
-                                            <td>{{$newSeance->Liste_moniteurs }}  </td>
-                                        <td>{{$newSeance->Type_Cours }}  </td>
+                                             <td>{{$newSeance->Type_Cours }}  </td>
+                                               <td>{{$newSeance->Liste_moniteurs }}  </td>
+                                                <td>{{$newSeance->Liste_candidats }}  </td>
                                             <td>{{$newSeance->Date_Cours }}  </td>
+                                          
+                                       
                                             <td>{{ $newSeance->Horaire }} </td>
                                           
                                           <td>{{ $newSeance->Duree }}</td>
                                           <td>{{ $newSeance->Montant }}
-                                            <td>
-
+                                            </td>
+<td>
                                               <div class="btn-group">
                 <a href="editSeancePratique/{{$newSeance->id}}">
                 <button type="button" class="btn btn-danger btn-flat"><i class="fa fa-edit"></i></button></a>
@@ -277,8 +281,9 @@ $('#submit').html('bonjjour');
                                         </tr>
                                       @endforeach
                                         </tbody>
+                                        <th>Type de cours</th>
                                         <th>Liste moniteurs</th>
-                                         <th>Type de cours</th>
+                                         <th>Liste candidats</th>
                                          <th>Date de cours</th>
                                          <th>Horaire</th>
                                           <th>Durée</th>

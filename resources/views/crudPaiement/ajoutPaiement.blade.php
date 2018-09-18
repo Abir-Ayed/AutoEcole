@@ -198,8 +198,8 @@
             <!-- text input -->
 
   <div class="form-group">
-                    <label>Id Candidat</label>
-                    <input type="text" class="form-control" name="candidat_id"  placeholder=" entrer id candidat...">
+                    <label> Candidat</label>
+                    <input type="text" class="form-control" name="candidat"  placeholder=" entrer id candidat...">
                  
                 </div>
 

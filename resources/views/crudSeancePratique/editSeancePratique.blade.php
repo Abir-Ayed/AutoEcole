@@ -40,9 +40,9 @@
         <!-- Logo -->
         <a href="../../index2.html" class="logo">
             <!-- mini logo for sidebar mini 50x50 pixels -->
-            <span class="logo-mini"><b>A</b>LT</span>
+            <span class="logo-mini"><b>A</b>EC</span>
             <!-- logo for regular state and mobile devices -->
-            <span class="logo-lg"><b>Admin</b>LTE</span>
+            <span class="logo-lg"><b>Auto Ecole</b></span>
         </a>
         <!-- Header Navbar: style can be found in header.less -->
         <nav class="navbar navbar-static-top">
@@ -74,7 +74,9 @@
                                 <img src="Admin/dist/img/user.png" class="img-circle" alt="User Image">
 
                                 <p>
-                                    Admin
+                                     @if(Auth::check())
+                                      {{Auth::user()->name}}
+                                      @endif
                                 </p>
                             </li>
                             <!-- Menu Body -->
@@ -84,9 +86,13 @@
                                 <div class="pull-left">
                                     <a href="#" class="btn btn-default btn-flat">Profile</a>
                                 </div>
-                                <div class="pull-right">
-                                    <a href="#" class="btn btn-default btn-flat">Sign out</a>
+                                   <div class="pull-right">
+                                    <a href="{{ route('logout') }}" class="btn btn-default btn-flat"   onclick="event.preventDefault();
+                                                     document.getElementById('logout-form').submit();">Déconnexion</a>
                                 </div>
+                                 <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                                        @csrf
+                                    </form>
                             </li>
                         </ul>
                     </li>
@@ -109,29 +115,51 @@
                 </div>
                 <div class="pull-left info">
                     <p>Admin</p>
-                    <a href="#"><i class="fa fa-circle text-success"></i> Online</a>
+                    <a href="#"><i class="fa fa-circle text-success"></i>En ligne</a>
                 </div>
             </div>
 
             <ul class="sidebar-menu" data-widget="tree">
 <br>
-                <li class="treeview">
+              <li class="treeview">
                     <a href="#">
+                        <i class="fa fa-dashboard"></i> <span>Acceuil</span>
+
+                    </a>
+</li>
+ <li class="active">
+                   <a href="/auto_ecole">
+                      <i class="fa fa-fw fa-home"></i>
+                        <span>Auto Ecole</span>
+
+              </a>
+                </li>
+ <li>
+                   <a href="http://localhost/Auto_ecole/public/crudMoniteur">
+                        <i class="fa fa-fw fa-users"></i>  
+                        <span>Moniteurs</span>
+
+              </a>
+                </li>
+
+                <li>
+                   <a href="http://localhost/Auto_ecole/public/crudFormateur">
+                        <i class="fa fa-fw fa-users"></i>  <span>Formateurs</span>
+                 </a>
+                </li>
+   
+
+
+
+
+                <li >
+                    <a href="http://localhost/Auto_ecole/public/crudCandidats">
                         <i class="fa fa-fw fa-users"></i> <span>Candidats</span>
 
-                    </a>
-
+                    
+</a>
                 </li>
-                <li class="treeview">
-                    <a href="#">
-                        <i class="fa fa-files-o"></i>
-                        <span> Consulter Paiements</span>
-
-                    </a>
-
-                </li>
-
-                <li class="treeview">
+               <li class="treeview">
                     <a href="#">
                         <i class="fa fa-book"></i>
                         <span>Séances</span>
@@ -140,34 +168,51 @@
                 </span>
                     </a>
                     <ul class="treeview-menu">
-                        <li><a href="../charts/chartjs.html"><i class="fa fa-circle-o"></i>Séances Pratiques</a></li>
-                        <li><a href="../charts/morris.html"><i class="fa fa-circle-o"></i> Séances Théoriques</a></li>
+                        <li><a href="http://localhost/Auto_ecole/public/crudSeancePratique"><i class="fa fa-circle-o"></i>Séances Pratiques</a></li>
+                        <li><a href="http://localhost/Auto_ecole/public/crudSeance"><i class="fa fa-circle-o"></i> Séances Théoriques</a></li>
 
                     </ul>
                 </li>
-                <li class="treeview">
-                    <a href="#">
-                        <i class="fa fa-edit"></i>
-                        <span>Examens</span>
+                <li >
+                    <a href="http://localhost/Auto_ecole/public/crudExamen">
+
+                    <i class="fa fa-edit"></i>
+                    <span>Examens</span>
 
                     </a>
 
                 </li>
-                <li class="treeview">
-                    <a href="#">
-                        <i class="fa fa-fw fa-users"></i>  <span>Moniteurs</span>
+                 
+                <li class="http://localhost/Auto_ecole/public/crudResultat">
+                                    <a href="#">
+                                        <i class="fa fa-fw fa-graduation-cap"></i> <span>Résultats</span>
+                                       
+                </span>
+                                    </a>
 
-                    </a>
-                </li>
-                <li class="treeview active">
-                    <a href="#">
-                        <i class="fa fa-fw fa-users"></i>  <span>Formateurs</span>
-                    </a>
+                                </li> 
+                
+                <li >
+                                    <a href="http://localhost/Auto_ecole/public/crudFacture">
+                                        <i class="fa fa-fw fa-calculator"></i> <span>Facture</span>
 
-                </li>
+                </span>
+                                    </a>
+
+                                </li> 
+   <li >
+
+                    <a href="/ajoutAlerte">
+                      <i class="fa fa-bell-o"></i>
+
+                        <span> Alertes</span>
+</a>
+                    </li>
+     
 
 
-            </ul>
+
+ 
         </section>
         <!-- /.sidebar -->
     </aside>
@@ -181,8 +226,8 @@
             </h1>
             <ol class="breadcrumb">
                 <li><a href="#"><i class="fa fa-dashboard"></i>Acceuil</a></li>
-                <li><a href="crudSeance">Gestion Séances Pratiques</a></li>
-                <li><a href="ajoutSeanceTheorique">Ajouter séances Pratiques</a></li>
+                <li><a href="http://localhost/Auto_ecole/public/crudSeancePratique">Gestion Séances Pratiques</a></li>
+                <li><a href="http://localhost/Auto_ecole/public/editSeancePratique/{id}">Modifier séances Pratiques</a></li>
 
             </ol>
         </section>
@@ -193,48 +238,49 @@
                 </div>
                 <!-- /.box-header -->
                 <div class="box-body">
-            <form role="form" action="{{url("/editSeancePratique/".$newSeance->id)}}" method="POST">
+            <form role="form" action="{{url("/editSeancePratique/".$newSeance['id'])}}" method="POST">
             {{ csrf_field() }}
             <!-- text input -->
             
             <div class="form-group">
                     <label>Liste Moniteurs</label>
-                  <select name="Liste_moniteurs" class="form-control" value="{{$newSeance->Liste_moniteurs}} ">
-                      <option>
+                  <select name="Liste_moniteurs" class="form-control" value="{{$newSeance['Liste_moniteurs']}} ">
+                      
                            @foreach($moniteurs as $value)
                                         <option>
                                             {{$value->nom}}
                                         </option>
                                     @endforeach
-                      </option>
+                      
                   </select>
                 </div>
-                
+                  
 <div class="form-group">
                     <label>Type Cours</label>
-                    <input type="text" class="form-control" name="Type_Cours"  placeholder=" cours théoriques" value="{{$newSeance->Type_Cours}} ">
+                    <input type="text" class="form-control" name="Type_Cours"  placeholder=" cours théoriques" value="{{$newSeance['Type_Cours']}} ">
                    
                 </div>
                 <div class="form-group">
                     <label>Date Cours</label>
                     <input type="date" class="form-control" name="Date_Cours"  placeholder="
-                     entrer date"  value="old('Date_Cours') ">
+                     entrer date"  value="{{$newSeance['Date_Cours']}} ">
                    
                 </div>
 
+  
                 <div class="form-group ">
                    <label>Horaire</label>
-                    <input type="time" class="form-control" name="Horaire"  placeholder=" entrer date"  value="old('Horaire') ">
+                    <input type="time" class="form-control" name="Horaire"  placeholder=" entrer date"  value="{{$newSeance['Horaire']}} ">
                 </div>
                
                <div class="form-group ">
                     <label>Durée</label>
-                    <input type="time" class="form-control" name="duree" placeholder=" entrer duree">
+                    <input type="time" class="form-control" name="Duree" placeholder=" entrer duree"  value="{{$newSeance['Duree']}} ">
                    
                 </div>
                <div class="form-group ">
                     <label>Montant</label>
-                    <input type="text" class="form-control" name="Montant" placeholder=" entrer montant">
+                    <input type="text" class="form-control" name="Montant" placeholder=" entrer montant"  value="{{$newSeance['Montant']}} ">
                    
                 </div>
 

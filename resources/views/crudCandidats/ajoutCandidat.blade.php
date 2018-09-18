@@ -216,7 +216,7 @@
                             {{csrf_field()}}
                             <div class="box-body">
                                 <div class="form-group">
-                                    <label for="inputEmail3" class="col-sm-2 control-label">Nom</label>
+                                    <label for="inputEmail3" class="col-sm-2 control-label">Nom complet</label>
 
                                     <div class="col-sm-10">
                                         <input type="text" class="form-control" name="nom" placeholder="entrer votre nom">
@@ -224,13 +224,7 @@
                                 </div>
 
 
-                                <div class="form-group">
-                                    <label for="inputEmail3" class="col-sm-2 control-label">Prenom</label>
-                                    <div class="col-sm-10">
-                                        <input type="text" class="form-control" name="prenom" placeholder="entrer votre prenom">
-                                    </div>
-
-                                </div>
+                               
 
 
                                 <div class="form-group">

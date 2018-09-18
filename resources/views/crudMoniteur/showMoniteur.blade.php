@@ -251,8 +251,8 @@ $('#submit').html('bonjjour');
                                     <table id="example2" class="table table-bordered table-hover">
                                         <thead>
                                         <tr>
-                                            <th>Nom</th>
-                                            <th>Prenom</th>
+                                            <th>Nom complet</th>
+                                            
                                             <th>Date de naissance</th>
                                             <th>Sexe</th>
                                             <th>Telephone</th>
@@ -267,8 +267,8 @@ $('#submit').html('bonjjour');
                                         <tr>
 
                                             <td>{{$newMoniteur->nom }}  </td>
-                                            <td>{{ $newMoniteur->prenom }} </td>
-                                            <td>{{$newMoniteur->date_naissance }}</td>
+                                     
+                                           <td>{{$newMoniteur->Date_Naissance }}</td>
                                             <td> {{ $newMoniteur->sexe}}</td>
                                             <td> {{$newMoniteur->Num_tel }}</td>
                                             <td>
@@ -284,8 +284,8 @@ $('#submit').html('bonjjour');
                                       @endforeach
                                         </tbody>
 
-                                        <th>Nom</th>
-                                        <th>Prenom</th>
+                                        <th>Nom complet</th>
+                                        
                                         <th>Date de naissance</th>
                                         <th>Sexe</th>
                                         <th>Telephone</th>

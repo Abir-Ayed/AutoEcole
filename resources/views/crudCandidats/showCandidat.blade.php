@@ -229,16 +229,7 @@
                                 </div>
 
 
-                                <div class="form-group {{ $errors->has('prenom') ? 'has-error' : '' }}">
-                                    <label for="inputEmail3" class="col-sm-2 control-label">Prenom</label>
-                                    <div class="col-sm-10">
-                                        <input type="text" class="form-control" value="{{ Request::old('prenom') }}" name="prenom" placeholder="entrer votre prenom">
-                                    </div>
-                                    @if( $errors->has('prenom'))
-                                        <span class="help-block"> {{$errors->first('prenom')}}</span>
-                                    @endif
-
-                                </div>
+                               
 
 
                                 <div class="form-group {{ $errors->has('date_naissance') ? 'has-error' : '' }}">
@@ -343,7 +334,7 @@
                                         <thead>
                                         <tr>
                                             <th>Nom</th>
-                                            <th>Prenom</th>
+                                        
                                             <th>Date de naissance</th>
                                             <th>Sexe</th>
                                             <th>Telephone</th>
@@ -359,7 +350,7 @@
                                             <tr>
 
                                                 <td>{{$newCandidat->nom }}  </td>
-                                                <td>{{ $newCandidat->prenom }} </td>
+                                                
                                                 <td>{{$newCandidat->date_naissance }}</td>
                                                 <td> {{ $newCandidat->sexe}}</td>
                                                 <td> {{$newCandidat->Num_tel }}</td>
@@ -379,7 +370,7 @@
                                         </tbody>
 
                                         <th>Nom</th>
-                                        <th>Prenom</th>
+                                        
                                         <th>Date de naissance</th>
                                         <th>Sexe</th>
                                         <th>Telephone</th>

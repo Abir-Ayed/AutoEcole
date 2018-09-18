@@ -9,18 +9,13 @@ use App\Candidat;
 class PaiementController extends Controller 
 {
 
-public function consulterP($id)
+public function consulterP()
 
     {
-       $cand=Candidat::all();
-
-          $id_candidat=DB::table('candidats')->where('id',$id)->value('id');
-          $candidat=DB::table('paiements')->where('id',$id_candidat)->get();
-
-
+      
       $paiement=Paiement::all();
         $arr=Array('paiement'=>$paiement);
-        return view('crudFacture.consulterPaiement',$arr,compact('cand','candidat'));
+        return view('crudPaiement.consulterPaiement',$arr,compact('cand','candidat'));
     }
 
    public function createPaiement(Request $request)
@@ -32,8 +27,12 @@ public function consulterP($id)
       if($request->isMethod('POST')){
          // dd($request);
         
+          $candidat=DB::table('candidats')->where('nom',($request->input('candidat'))) ->value('id');
+
           $newPaiement=new Paiement();
-         $newPaiement->candidat_id=$request->input('candidat_id');
+          $newPaiement->candidat=$request->input('candidat');
+          $newPaiement->candidat_id=$candidat;
+          
          $newPaiement->date_operation=$request->input('date_operation');
          $newPaiement->montant=$request->input('montant');
          $newPaiement->mode_paiement=$request->input('mode_paiement');
@@ -82,12 +81,16 @@ public function consulterP($id)
 
   {
         
- if($request->isMethod('POST')){
+   if($request->isMethod('POST')){
          // dd($request);
         
-         $newPaiement=Paiement::find($id);
+          $candidat=DB::table('candidats')->where('nom',($request->input('candidat'))) ->value('id');
 
-         $newPaiement->candidat_id=$request->input('candidat_id');
+           $newPaiement=Paiement::find($id);
+
+          $newPaiement->candidat=$request->input('candidat');
+          $newPaiement->candidat_id=$candidat;
+          
          $newPaiement->date_operation=$request->input('date_operation');
          $newPaiement->montant=$request->input('montant');
          $newPaiement->mode_paiement=$request->input('mode_paiement');
@@ -96,7 +99,7 @@ public function consulterP($id)
          
            $newPaiement->save();
 
-          return redirect('crudPaiement', ['newPaiement' => $newPaiement]);
+          return redirect('crudPaiement');
   }
       // dd($request->all());
       else {

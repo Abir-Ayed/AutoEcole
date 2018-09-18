@@ -155,7 +155,7 @@ Route::post('ajoutSeancePratique',[ 'uses'=>"SeanceController@createSeancePratiq
 Route::get('crudSeancePratique',"SeanceController@indexSeance");
 Route::get('/editSeancePratique/{id}',"SeanceController@updateSeance");
 Route::post('/editSeancePratique/{id}',"SeanceController@updateSeance");
-Route::get('/crudSeancePratique/{id}',"SeanceController@destroy");
+Route::get('/crudSeancePratique/{id}',"SeanceController@destroySeance");
 Route::get('/afficheSeancePratique/{id}',"SeanceController@imprimerSeance");
 
 
@@ -173,7 +173,7 @@ Route::get('/afficheResultat/{id}',"ResultatController@imprimer");
 
 Route::get('/ajoutAuto',"AutoController@createAuto");
 Route::post('ajoutAuto',[ 'uses'=>"AutoController@createAuto",'as'=>'auto_ajout']);
-Route::get('auto_ecole',"AutoController@indexAuto");
+Route::get('/auto_ecole',"AutoController@indexAuto");
 Route::get('/auto_ecole/{id}',"AutoController@destroy");
 Route::get('/editAuto/{id}',"AutoController@updateAuto");
 Route::post('/editAuto/{id}',"AutoController@updateAuto");
@@ -198,14 +198,15 @@ Route::get('/editPaiement/{id}',"PaiementController@updatePaiement");
 Route::post('/editPaiement/{id}',"PaiementController@updatePaiement");
 Route::get('/affichePaiement/{id}',"PaiementController@imprimerPaiement");
 Route::get('/crudPaiement/{id}',"PaiementController@destroyP");
-Route::get('consulterPaiement/{id}',"PaiementController@consulterP");
+Route::get('consulterPaiement',"PaiementController@consulterP");
 
 
-Route::get('/ajoutFacture',"FactureController@createFacture");
-Route::post('ajoutFacture',[ 'uses'=>"FactureController@createFacture",'as'=>'facture_ajout']);
+Route::get('/ajoutFacture/{id}',"FactureController@createFacture");
+Route::post('/ajoutFacture/{id}',[ 'uses'=>"FactureController@createFacture",'as'=>'facture_ajout']);
 
 
-Route::get('crudFacture/{id}',"FactureController@showFacture");
+Route::get('crudFacture',"FactureController@showFacture");
+
 
 
 /*Route::group(['middleware'=>['web','auth']],function(){
@@ -226,7 +227,13 @@ return view('welcome');
 });*/
 Auth::routes();
 Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/home', 'HomeController@statistique');
+
 Route::get('logout', 'Auth\LoginController@logout');
+Route::post('auth/password/email','Auth\ForgotPasswordController@sendResetLinkEmail');
+Route::get('auth/password/email','Auth\ForgotPasswordController@showLinkRequestForm');
+ Route::post('auth/password/reset','Auth\ResetPasswordController@reset');
+  Route::get('auth/password/reset/{token?}','Auth\RsetPasswordController@showResetForm');
 
 //Route::get('/Moderateur', 'ModerateurController@index');
 //Route::get('/acceuilAdmin', 'AdminController@index');

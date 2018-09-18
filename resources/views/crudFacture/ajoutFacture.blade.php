@@ -40,9 +40,9 @@
         <!-- Logo -->
         <a href="../../index2.html" class="logo">
             <!-- mini logo for sidebar mini 50x50 pixels -->
-            <span class="logo-mini"><b>A</b>LT</span>
+            <span class="logo-mini"><b>A</b>EC</span>
             <!-- logo for regular state and mobile devices -->
-            <span class="logo-lg"><b>Admin</b>LTE</span>
+            <span class="logo-lg"><b>Auto Ecole</b></span>
         </a>
         <!-- Header Navbar: style can be found in header.less -->
         <nav class="navbar navbar-static-top">
@@ -74,7 +74,9 @@
                                 <img src="Admin/dist/img/user.png" class="img-circle" alt="User Image">
 
                                 <p>
-                                    Admin
+                                       @if(Auth::check())
+                                      {{Auth::user()->name}}
+                                      @endif
                                 </p>
                             </li>
                             <!-- Menu Body -->
@@ -84,9 +86,13 @@
                                 <div class="pull-left">
                                     <a href="#" class="btn btn-default btn-flat">Profile</a>
                                 </div>
-                                <div class="pull-right">
-                                    <a href="#" class="btn btn-default btn-flat">Sign out</a>
+                                  <div class="pull-right">
+                                    <a href="{{ route('logout') }}" class="btn btn-default btn-flat"   onclick="event.preventDefault();
+                                                     document.getElementById('logout-form').submit();">Déconnexion</a>
                                 </div>
+                                 <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                                        @csrf
+                                    </form>
                             </li>
                         </ul>
                     </li>
@@ -109,29 +115,51 @@
                 </div>
                 <div class="pull-left info">
                     <p>Admin</p>
-                    <a href="#"><i class="fa fa-circle text-success"></i> Online</a>
+                    <a href="#"><i class="fa fa-circle text-success"></i> en ligne</a>
                 </div>
             </div>
 
             <ul class="sidebar-menu" data-widget="tree">
 <br>
-                <li class="treeview">
+              <li class="treeview">
                     <a href="#">
+                        <i class="fa fa-dashboard"></i> <span>Acceuil</span>
+
+                    </a>
+</li>
+ <li class="active">
+                   <a href="/ajoutAuto">
+                      <i class="fa fa-fw fa-home"></i>
+                        <span>Auto Ecole</span>
+
+              </a>
+                </li>
+ <li>
+                   <a href="/ajoutMoniteur">
+                        <i class="fa fa-fw fa-users"></i>  
+                        <span>Moniteurs</span>
+
+              </a>
+                </li>
+
+                <li>
+                   <a href="/ajoutFormateur">
+                        <i class="fa fa-fw fa-users"></i>  <span>Formateurs</span>
+                 </a>
+                </li>
+   
+
+
+
+
+                <li >
+                    <a href="/ajoutCandidat">
                         <i class="fa fa-fw fa-users"></i> <span>Candidats</span>
 
-                    </a>
-
+                    
+</a>
                 </li>
-                <li class="treeview">
-                    <a href="#">
-                        <i class="fa fa-files-o"></i>
-                        <span> Consulter Paiements</span>
-
-                    </a>
-
-                </li>
-
-                <li class="treeview">
+               <li class="treeview">
                     <a href="#">
                         <i class="fa fa-book"></i>
                         <span>Séances</span>
@@ -140,31 +168,47 @@
                 </span>
                     </a>
                     <ul class="treeview-menu">
-                        <li><a href="../charts/chartjs.html"><i class="fa fa-circle-o"></i>Séances Pratiques</a></li>
-                        <li><a href="../charts/morris.html"><i class="fa fa-circle-o"></i> Séances Théoriques</a></li>
+                        <li><a href="/ajoutSeancePratique"><i class="fa fa-circle-o"></i>Séances Pratiques</a></li>
+                        <li><a href="/ajoutSeanceTheorique"><i class="fa fa-circle-o"></i> Séances Théoriques</a></li>
 
                     </ul>
                 </li>
-                <li class="treeview">
-                    <a href="#">
-                        <i class="fa fa-edit"></i>
-                        <span>Examens</span>
+                <li >
+                    <a href="/ajoutExamen">
+
+                    <i class="fa fa-edit"></i>
+                    <span>Examens</span>
 
                     </a>
 
                 </li>
-                <li class="treeview">
-                    <a href="#">
-                        <i class="fa fa-fw fa-users"></i>  <span>Moniteurs</span>
+                 
+                <li class="/ajoutResultat">
+                                    <a href="#">
+                                        <i class="fa fa-fw fa-graduation-cap"></i> <span>Résultats</span>
+                                       
+                </span>
+                                    </a>
 
-                    </a>
-                </li>
-                <li class="treeview active">
-                    <a href="#">
-                        <i class="fa fa-fw fa-users"></i>  <span>Formateurs</span>
-                    </a>
+                                </li> 
+                
+                <li >
+                                    <a href="/ajoutFacture">
+                                        <i class="fa fa-fw fa-calculator"></i> <span>Facture</span>
 
-                </li>
+                </span>
+                                    </a>
+
+                                </li> 
+   <li >
+
+                    <a href="/ajoutAlerte">
+                      <i class="fa fa-bell-o"></i>
+
+                        <span> Alertes</span>
+</a>
+                    </li>
+     
 
 
             </ul>
@@ -193,7 +237,7 @@
                 </div>
                 <!-- /.box-header -->
                 <div class="box-body">
-            <form role="form" action="{{route('facture_ajout')}}" method="POST">
+            <form role="form" action="{{url("/ajoutFacture/".$newPaiement['id'])}}" method="POST">
             {{ csrf_field() }}
             <!-- text input -->
               
@@ -204,6 +248,13 @@
                     <input type="text" class="form-control" name="id_facture"  placeholder=" entrer ....">
                  
                 </div>
+                  <div class="form-group">
+                    <label>Candidat</label>
+                    <input type="text" class="form-control" name="candidat"  placeholder=" entrer ....">
+                 
+                </div>
+                
+                
                 
                 <div class="form-group">
                     <label>Date de facture</label>

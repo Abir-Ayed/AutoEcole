@@ -18,7 +18,7 @@ class CreateFacturesTable extends Migration
             $table->integer('montant_paye');
             $table->integer('montant_restant');
             $table->integer('montant_totale');
-            $table->string('liste_candidat');
+            $table->string('candidat');
 
         });
     }

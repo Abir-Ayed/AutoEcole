@@ -19,9 +19,9 @@ class MoniteurController extends Controller
       if($request->isMethod('POST')){
         
  $this->validate($request,[
-     'nom'=>'required|max:10',
-     'prenom'=>'required|max:10',
-     'date_naissance'=>'required',
+     'nom'=>'required|max:20',
+     
+     'Date_Naissance'=>'required',
      'sexe'=>'required',
      'Num_tel'=>'required|numeric',
 
@@ -34,8 +34,8 @@ class MoniteurController extends Controller
 
           $newMoniteur=new Moniteur();
           $newMoniteur->nom=$request->input('nom');
-          $newMoniteur->prenom=$request->input('prenom');
-          $newMoniteur->date_naissance=$request->input('date_naissance');
+          
+          $newMoniteur->Date_Naissance=$request->input('Date_Naissance');
           $newMoniteur->sexe=$request->input('sexe');
           $newMoniteur->Num_tel=$request->input('Num_tel');
 
@@ -88,10 +88,10 @@ class MoniteurController extends Controller
   {
       if($request->isMethod('POST')){
           //die('tt');
-          $newMoniteur=new Moniteur();
+          $newMoniteur=Moniteur::find($id);
           $newMoniteur->nom=$request->input('nom');
-          $newMoniteur->prenom=$request->input('prenom');
-          $newMoniteur->date_naissance=$request->input('date_naissance');
+          
+          $newMoniteur->Date_Naissance=$request->input('Date_Naissance');
           $newMoniteur->sexe=$request->input('sexe');
           $newMoniteur->Num_tel=$request->input('Num_tel');
 

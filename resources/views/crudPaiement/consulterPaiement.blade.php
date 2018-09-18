@@ -38,9 +38,9 @@
         <!-- Logo -->
         <a href="../../index2.html" class="logo">
             <!-- mini logo for sidebar mini 50x50 pixels -->
-            <span class="logo-mini"><b>A</b>LT</span>
+            <span class="logo-mini"><b>A</b>EC</span>
             <!-- logo for regular state and mobile devices -->
-            <span class="logo-lg"><b>Admin</b>LTE</span>
+            <span class="logo-lg"><b>Auto Ecole</b></span>
         </a>
         <!-- Header Navbar: style can be found in header.less -->
         <nav class="navbar navbar-static-top">
@@ -130,11 +130,11 @@
         <!-- Content Header (Page header) -->
         <section class="content-header">
             <h1>
-                Consulter paiement
+                Gestion Paiements
             </h1>
             <ol class="breadcrumb">
                 <li><a href="#"><i class="fa fa-dashboard"></i>Acceuil</a></li>
-                <li><a href="crudExamen">Consulter</a></li>
+                <li><a href="crudExamen">Gestion paiements</a></li>
 
             </ol>
         </section>
@@ -152,14 +152,7 @@
 
                             </div>
                             <!-- /.box-header -->
-                            <div class="box-body">
-                                <div class="box-body">
-                                    <a href="ajoutPaiement"><button type="button" class="btn btn-default" data-toggle="modal" data-target="#modal-default">
-                                        <div class="col-md-3 col-sm-4"><i class="fa fa-fw fa-plus"></i> Facture</div>
-                                    </button></a>
-
-                                </div>
-                            </div>
+                           
                             <table id="example2" class="table table-bordered table-hover">
                                 <thead>
                                 <tr>
@@ -172,32 +165,28 @@
                                 </tr>
                                 </thead>
                                 <tbody>
-                               
-                                <tr>  
-                                  <td>  @foreach($cand as $candidat)
-                                    {{$candidat['nom']}} {{$candidat['prenom']}} 
-                                    @endforeach 
-                                </td>
-                                    @foreach($paiement as $newPaiement)
+                               @foreach($paiement as $newPaiement)
+                                <tr>
+                                  
+                                    <td>{{$newPaiement->candidat }}  </td>
                                       <td>{{$newPaiement->date_operation }}  </td>
                                     <td>{{ $newPaiement->montant }} </td>
                                     <td> {{ $newPaiement->mode_paiement}}</td>
                                     <td> {{ $newPaiement->description}}</td>
 
-                                   <td>
+                                   
+
+                                    <td>
                                         <div class="btn-group">
 
                                                  
-                                           
-                                            <a href="crudFacture/{{$newPaiement->id}}"><button type="button" class="btn btn-warning btn-flat">Facture</button></a>
+                                            <a href="ajoutFacture/{{$newPaiement->id}}"><button type="button" class="btn btn-block btn-success"><i class="fa fa-fw fa-plus"></i>Facture</button></a>
 
                                         </div>
 
                                     </td>
-
-                                  
                                 </tr>
-                            @endforeach
+ @endforeach
                                 </tbody>
                                 <tfoot>
                                 <tr>
@@ -215,7 +204,7 @@
                     </div>
                     <!-- /.box -->
 
-
+</div>
                     <!-- /.content-wrapper -->
 
 
@@ -429,15 +418,23 @@
 
                                 </div>
                             </form>
-                            
-            <ul class="sidebar-menu" data-widget="tree">
-<li></li><br>
-<li class="treeview">
+                            <!-- /.search form -->
+                            <!-- sidebar menu: : style can be found in sidebar.less -->
+                            <ul class="sidebar-menu" data-widget="tree">
+
+                              <li class="treeview">
                     <a href="#">
                         <i class="fa fa-dashboard"></i> <span>Acceuil</span>
 
                     </a>
 </li>
+ <li class="active">
+                   <a href="auto_ecole">
+                      <i class="fa fa-fw fa-home"></i>
+                        <span>Auto Ecole</span>
+
+              </a>
+                </li>
  <li>
                    <a href="crudMoniteur">
                         <i class="fa fa-fw fa-users"></i>  
@@ -472,8 +469,8 @@
                 </span>
                     </a>
                     <ul class="treeview-menu">
-                        <li><a href="../charts/chartjs.html"><i class="fa fa-circle-o"></i>Séances Pratiques</a></li>
-                        <li><a href="../charts/morris.html"><i class="fa fa-circle-o"></i> Séances Théoriques</a></li>
+                        <li><a href="crudSeancePratique"><i class="fa fa-circle-o"></i>Séances Pratiques</a></li>
+                        <li><a href="crudSeance"><i class="fa fa-circle-o"></i> Séances Théoriques</a></li>
 
                     </ul>
                 </li>
@@ -487,28 +484,33 @@
 
                 </li>
                  
-                <li class="treeview">
+                <li class="crudResultat">
                                     <a href="#">
                                         <i class="fa fa-fw fa-graduation-cap"></i> <span>Résultats</span>
-                                        <span class="pull-right-container">
-                  <i class="fa fa-angle-left pull-right"></i>
+                                       
                 </span>
                                     </a>
 
                                 </li> 
                 
-                <li>
-                    <a href="#">
-                        <i class="fa fa-files-o"></i>
-                        <span> Consulter Paiements</span>
+                <li >
+                                    <a href="crudFacture">
+                                        <i class="fa fa-fw fa-calculator"></i> <span>Facture</span>
+
+                </span>
+                                    </a>
+
+                                </li> 
+   <li >
+
+                    <a href="crudAlertes">
+                      <i class="fa fa-bell-o"></i>
+
+                        <span> Alertes</span>
 </a>
                     </li>
+  
 
- 
-     
-    
-
-            </ul>
 
 
                         </section>

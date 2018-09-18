@@ -12,7 +12,7 @@ class CreateCandidatsTable extends Migration {
 			$table->increments('id');
 
             $table->string('nom');
-            $table->string('prenom');
+            
             $table->date('date_naissance');
             $table->string('sexe');
             $table->string('Num_tel');

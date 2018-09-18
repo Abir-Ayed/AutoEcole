@@ -14,6 +14,7 @@
     <link rel="stylesheet" href="{{asset('Admin/bower_components/Ionicons/css/ionicons.min.css')}}">
     <!-- DataTables -->
     <link rel="stylesheet" href="{{asset('Admin/bower_components/datatables.net-bs/css/dataTables.bootstrap.min.css')}}">
+     <link rel="stylesheet" href="{{asset('Admin/bower_components/morris.js/morris.css')}}">
     <!-- Theme style -->
     <link rel="stylesheet" href="{{asset('Admin/dist/css/AdminLTE.min.css')}}">
     <!-- AdminLTE Skins. Choose a skin from the css/skins
@@ -541,21 +542,243 @@
                     <!-- /.control-sidebar -->
                     <!-- Add the sidebar's background. This div must be placed
                          immediately after the control sidebar -->
-                    <div class="control-sidebar-bg"></div>
-                </div>
+                 
+    <!-- Main content -->
+     <!-- Main content -->
+      @if ((Auth::user()->role==='admin'))  
+    <section class="content">
+      <div class="row">
+        <div class="col-lg-3 col-xs-6">
+          <!-- small box -->
+          <div class="small-box bg-aqua">
+            <div class="inner">
+              <h3></h3>
+
+              <h2>Candidats</h2>
+            </div>
+            <div class="icon">
+              <i class="ion ion-person-add"></i></i>
+            </div>
+            <a href="crudCandidats" class="small-box-footer">Plus d'informations <i class="fa fa-arrow-circle-right"></i></a>
+          </div>
+        </div>
+        <!-- ./col -->
+        <div class="col-lg-3 col-xs-6">
+          <!-- small box -->
+          <div class="small-box bg-green">
+            <div class="inner">
+              <h3><sup style="font-size: 20px"></sup></h3>
+
+             <h2>Moniteurs</h2>
+            </div>
+            <div class="icon">
+               <i class="ion ion-person-add"></i>
+            </div>
+            <a href="crudMoniteur" class="small-box-footer">Plus d'informations <i class="fa fa-arrow-circle-right"></i></a>
+          </div>
+        </div>
+        <!-- ./col -->
+        <div class="col-lg-3 col-xs-6">
+          <!-- small box -->
+          <div class="small-box bg-yellow">
+            <div class="inner">
+              <h3></h3>
+
+              <h2>Formateurs</h2>
+            </div>
+            <div class="icon">
+              <i class="ion ion-person-add"></i>
+            </div>
+            <a href="crudFormateur" class="small-box-footer">Plus d'informations <i class="fa fa-arrow-circle-right"></i></a>
+          </div>
+        </div>
+        <!-- ./col -->
+        <div class="col-lg-3 col-xs-6">
+          <!-- small box -->
+          <div class="small-box bg-red">
+            <div class="inner">
+              <h3></h3>
+              
+
+              <h2>Véhicules</h2>
+            </div>
+            <div class="icon">
+                <i class="fa fa-fw fa-car"></i>
+            </div>
+            <a href="crudVehicule" class="small-box-footer">Plus d'informations <i class="fa fa-arrow-circle-right"></i></a>
+          </div>
+        </div>
+        <!-- ./col -->
+      <div class="col-lg-3 col-xs-6">
+          <!-- small box -->
+          <div class="small-box bg-navy">
+            <div class="inner">
+              <h3><sup style="font-size: 20px"></sup></h3>
+
+             <h2>Examens</h2>
+            </div>
+            <div class="icon">
+                <i class="fa fa-edit"></i>
+            </div>
+            <a href="crudVehicule" class="small-box-footer">Plus d'informations <i class="fa fa-arrow-circle-right"></i></a>
+          </div>
+        </div>
+
+        <div class="col-lg-3 col-xs-6">
+          <!-- small box -->
+          <div class="small-box bg-red">
+            <div class="inner">
+              <h3><sup style="font-size: 20px"></sup></h3>
+
+             <h2>Alertes</h2>
+            </div>
+            <div class="icon">
+               <i class="fa fa-bell-o"></i>
+
+            </div>
+            <a href="crudAlerte" class="small-box-footer">Plus d'informations <i class="fa fa-arrow-circle-right"></i></a>
+          </div>
+        </div>
+        <div class="col-lg-3 col-xs-6">
+          <!-- small box -->
+          <div class="small-box bg-maroon">
+            <div class="inner">
+              <h3><sup style="font-size: 20px"></sup></h3>
+
+             <h2>Résultats</h2>
+            </div>
+            <div class="icon">
+ <i class="fa fa-fw fa-graduation-cap"></i>             </div>
+            <a href="crudResultat" class="small-box-footer">Plus d'informations <i class="fa fa-arrow-circle-right"></i></a>
+          </div>
+        </div>
+        <div class="col-lg-3 col-xs-6">
+          <!-- small box -->
+          <div class="small-box bg-purple">
+            <div class="inner">
+              <h3><sup style="font-size: 20px"></sup></h3>
+
+             <h2>Facture</h2>
+            </div>
+            <div class="icon">
+                <i class="fa fa-fw fa-calculator"></i>
+            </div>
+            <a href="crudFacture" class="small-box-footer">Plus d'informations <i class="fa fa-arrow-circle-right"></i></a>
+          </div>
+        </div>
+       
+          
+        </div>
+        <!-- /.col -->
+      
+ 
+        <div class="col-md-6">
+          <!-- Info Boxes Style 2 -->
+         <div class="info-box">
+            <span class="info-box-icon bg-aqua"> <i class="fa fa-fw fa-car"></i></span>
+
+            <div class="info-box-content">
+              <span class="info-box-text">Vehicules</span>
+              <span class="info-box-number">{{$vehicule}}<small></small></span>
+            </div>
+            <!-- /.info-box-content -->
+          </div>
+       
+          <div class="info-box">
+            <span class="info-box-icon bg-red"> <i class="fa fa-bell-o"></i>
+</span>
+
+            <div class="info-box-content">
+              <span class="info-box-text">Alertes</span>
+              <span class="info-box-number">{{$alerte}}</span>
+            </div>
+            <!-- /.info-box-content -->
+          </div>
+          </div>
+                  <div class="col-md-6">
+
+          <div class="box">
+            <div class="box-header">
+              <h3 class="box-title">Statisques de septembre 2018</h3>
+            </div>
+            <!-- /.box-header -->
+            <div class="box-body no-padding">
+              <table class="table table-striped">
+                <tr>
+                  <th style="width: 10px">#</th>
+                  <th>Tâche</th>
+                  <th>Evolution</th>
+                  <th style="width: 40px">Pourcentage(%)</th>
+                </tr>
+                <tr>
+                  <td>1.</td>
+                  <td>Candidats</td>
+                  <td>
+                    <div class="progress progress-xs">
+                      <div class="progress-bar progress-bar-danger" style="width:{{$som}}%"></div>
+                    </div>
+                  </td>
+                  <td><span class="badge bg-red">{{$som}}%</span></td>
+                </tr>
+                <tr>
+                  <td>2.</td>
+                  <td>Moniteurs</td>
+                  <td>
+                    <div class="progress progress-xs">
+                      <div class="progress-bar progress-bar-yellow" style="width: {{ $somMoniteur}}%"></div>
+                    </div>
+                  </td>
+                  <td><span class="badge bg-yellow">{{ $somMoniteur}}%</span></td>
+                </tr>
+                <tr>
+                  <td>3.</td>
+                  <td>Formateurs</td>
+                  <td>
+                    <div class="progress progress-xs progress-striped active">
+                      <div class="progress-bar progress-bar-primary" style="width:{{$somFormteur}}%"></div>
+                    </div>
+                  </td>
+                  <td><span class="badge bg-light-blue">{{$somFormteur}}%</span></td>
+                </tr>
+                <tr>
+                  <td>4.</td>
+                  <td>Séances</td>
+                  <td>
+                    <div class="progress progress-xs progress-striped active">
+                      <div class="progress-bar progress-bar-success" style="width:{{$seance}}%"></div>
+                    </div>
+                  </td>
+                  <td><span class="badge bg-green">{{$seance}}%</span></td>
+                </tr>
+              </table>
+            </div>
+            <!-- /.box-body -->
+          </div>
+          <!-- /.box -->
+        </div>
+      <!-- /.row -->
+     
+       
+    </section>
+@endif
                 <!-- ./wrapper -->
 
                 <!-- jQuery 3 -->
                 <script src="{{asset('Admin/bower_components/jquery/dist/jquery.min.js')}}"></script>
                 <!-- Bootstrap 3.3.7 -->
                 <script src="{{asset('Admin/bower_components/bootstrap/dist/js/bootstrap.min.js')}}"></script>
+
                 <!-- DataTables -->
+                
+<script src="{{asset('Admin/bower_components/fastclick/lib/fastclick.js')}}"></script>
+
                 <script src="{{asset('Admin/bower_components/datatables.net/js/jquery.dataTables.min.js')}}"></script>
                 <script src="{{asset('Admin/bower_components/datatables.net-bs/js/dataTables.bootstrap.min.js')}}"></script>
                 <!-- SlimScroll -->
                 <script src="{{asset('Admin/bower_components/jquery-slimscroll/jquery.slimscroll.min.js')}}"></script>
+
                 <!-- FastClick -->
-                <script src="{{asset('Admin/bower_components/fastclick/lib/fastclick.js')}}"></script>
+                
                 <!-- AdminLTE App -->
                 <script src="{{asset('Admin/dist/js/adminlte.min.js')}}"></script>
                 <!-- AdminLTE for demo purposes -->
@@ -574,5 +797,6 @@
                         })
                     })
                 </script>
+              
 </body>
 </html>

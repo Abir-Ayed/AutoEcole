@@ -12,9 +12,12 @@ class CreateSeancesTable extends Migration {
 		 $table->integer('formateur_id')->unsigned();
          $table->foreign('formateur_id')->references('id')->on('formateurs');
           $table->integer('moniteur_id')->unsigned();
+           $table->integer('candidat_id')->unsigned();
+         $table->foreign('candidat_id')->references('id')->on('candidat');
          $table->boolean('typeboolean');	
 		 $table->string('Liste_Formateurs');
 		 $table->string('Liste_moniteurs');
+         $table->string('Liste_candidats');
 
 		 $table->string('Type_Cours');
          $table->date('Date_Cours');

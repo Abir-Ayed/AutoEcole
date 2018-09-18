@@ -234,72 +234,94 @@
 
              <ul class="sidebar-menu" data-widget="tree">
 
-                                <li >
-                                
-                                    <a href="/moniteur/Moniteur">
-                                        <i class="fa fa-dashboard"></i> <span>Acceuil</span>
+                             <li class="treeview">
+                    <a href="#">
+                        <i class="fa fa-dashboard"></i> <span>Acceuil</span>
 
-                                    </a>
-                                </li>
+                    </a>
+</li>
+ <li class="active">
+                   <a href="auto_ecole">
+                      <i class="fa fa-fw fa-home"></i>
+                        <span>Auto Ecole</span>
 
-                                <li >
-                                    <a href="crudCandidats">
-                                        <i class="fa fa-fw fa-users"></i> <span>Candidats</span>
+              </a>
+                </li>
+ <li>
+                   <a href="crudMoniteur">
+                        <i class="fa fa-fw fa-users"></i>  
+                        <span>Moniteurs</span>
 
-                                    </a>
+              </a>
+                </li>
 
-                                </li>
-                                <li>
-                                    <a href="#">
-                                        <i class="fa fa-files-o"></i>
-                                        <span> Consulter Paiements</span>
+                <li>
+                   <a href="crudFormateur">
+                        <i class="fa fa-fw fa-users"></i>  <span>Formateurs</span>
+                 </a>
+                </li>
+   
 
-                                    </a>
 
-                                </li>
 
-                                <li>
-                                    <a href="crudSeance">
-                                        <i class="fa fa-book"></i>
-                                        <span>Séances</span>
 
-                </span>
-                                    </a>
+                <li >
+                    <a href="crudCandidats">
+                        <i class="fa fa-fw fa-users"></i> <span>Candidats</span>
 
-                                </li>
-                                <li>
-                                    <a href="crudExamen">
-                                        <i class="fa fa-edit"></i>
-                                        <span>Examens</span>
-
-                                    </a>
-
-                                </li>
-                                <li>
-                                    <a href="crudMoniteur">
-                                        <i class="fa fa-fw fa-users"></i> <span>Moniteurs</span>
-
-                                    </a>
-
-                                </li>
-                                <li>
-                                    <a href="crudFormateur">
-                                        <i class="fa fa-fw fa-users"></i> <span>Formateurs</span>
-
-                                    </a>
-
-                                </li>
-                                <li >
-                                    <a href="#">
-                                        <i class="fa fa-fw fa-graduation-cap"></i> <span>Résultats</span>
-                                        <span class="pull-right-container">
+                    
+</a>
+                </li>
+               <li class="treeview">
+                    <a href="#">
+                        <i class="fa fa-book"></i>
+                        <span>Séances</span>
+                        <span class="pull-right-container">
                   <i class="fa fa-angle-left pull-right"></i>
                 </span>
+                    </a>
+                    <ul class="treeview-menu">
+                        <li><a href="crudSeancePratique"><i class="fa fa-circle-o"></i>Séances Pratiques</a></li>
+                        <li><a href="crudSeance"><i class="fa fa-circle-o"></i> Séances Théoriques</a></li>
+
+                    </ul>
+                </li>
+                <li >
+                    <a href="crudExamen">
+
+                    <i class="fa fa-edit"></i>
+                    <span>Examens</span>
+
+                    </a>
+
+                </li>
+                 
+                <li class="crudResultat">
+                                    <a href="#">
+                                        <i class="fa fa-fw fa-graduation-cap"></i> <span>Résultats</span>
+                                       
+                </span>
                                     </a>
 
-                                </li>
+                                </li> 
+                
+                <li >
+                                    <a href="crudFacture">
+                                        <i class="fa fa-fw fa-calculator"></i> <span>Facture</span>
 
+                </span>
+                                    </a>
 
+                                </li> 
+   <li >
+
+                    <a href="crudAlertes">
+                      <i class="fa fa-bell-o"></i>
+
+                        <span> Alertes</span>
+</a>
+                    </li>
+  
 
 
 
@@ -337,7 +359,7 @@
 
                                         <tr>
 
-                                            <td><li><a href="#">Id Candidat : {{$newPaiement->candidat_id}}</a></li>  </td>
+                                            <td><li><a href="#">Candidat : {{$newPaiement->candidat}}</a></li>  </td>
                                             <td><li><a href="#">Date d'operation : {{$newPaiement->date_operation}}</a></li></td>
                                             <td><li><a href="#">Montant : {{$newPaiement->montant}}</a></li></td>
                                             <td><li><a href="#">Mode de paiement : {{$newPaiement->mode_paiement}}</a> </li></td>

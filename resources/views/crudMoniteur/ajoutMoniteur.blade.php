@@ -227,25 +227,19 @@
             <!-- text input -->
 
                 <div class="form-group {{ $errors->has('nom') ? 'has-error' : '' }}">
-                    <label>Nom</label>
+                    <label>Nom complet</label>
                     <input type="text" class="form-control" name="nom"    value="{{ Request::old('nom') }}" placeholder=" entrer nom">
                     @if( $errors->has('nom'))
                         <span class="help-block"> {{$errors->first('nom')}}</span>
                     @endif
                 </div>
 
-                <div class="form-group {{ $errors->has('prenom') ? 'has-error' : '' }}">
-                    <label>Prenom</label>
-                    <input type="text" class="form-control" name="prenom" placeholder=" entrer prenom"  value="{{ Request::old('prenom') }}">
-                    @if( $errors->has('prenom'))
-                        <span class="help-block"> {{$errors->first('prenom')}}</span>
-                    @endif
-                </div>
-                <div class="form-group {{ $errors->has('date_naissance') ? 'has-error' : '' }}">
+               
+                <div class="form-group {{ $errors->has('Date_Naissance') ? 'has-error' : '' }}">
                     <label>Date de naissance</label>
-                    <input type="date" class="form-control" name="date_naissance"value="{{ Request::old('date_naissance') }}"  placeholder="entrer votre date de naissance">
-                    @if( $errors->has('date_naissance'))
-                        <span class="help-block"> {{$errors->first('date_naissance')}}</span>
+                    <input type="date" class="form-control" name="Date_Naissance"  placeholder="entrer votre date de naissance">
+                    @if( $errors->has('Date_Naissance'))
+                        <span class="help-block"> {{$errors->first('Date_Naissance')}}</span>
                     @endif
                 </div>
 

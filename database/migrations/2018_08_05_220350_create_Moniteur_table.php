@@ -10,8 +10,8 @@ class CreateMoniteurTable extends Migration {
 		Schema::create('moniteurs', function(Blueprint $table) {
 			$table->increments('id');
 			$table->string('nom');
-			$table->string('prenom');
-			$table->date('date_naissance');
+			
+			$table->date('Date_Naissance');
 			$table->string('sexe');
 			$table->string('Num_tel');
 

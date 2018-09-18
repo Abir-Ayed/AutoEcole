@@ -40,9 +40,9 @@
         <!-- Logo -->
         <a href="../../index2.html" class="logo">
             <!-- mini logo for sidebar mini 50x50 pixels -->
-            <span class="logo-mini"><b>A</b>LT</span>
+            <span class="logo-mini"><b>A</b>EC</span>
             <!-- logo for regular state and mobile devices -->
-            <span class="logo-lg"><b>Admin</b>LTE</span>
+            <span class="logo-lg"><b>Auto Ecole</b></span>
         </a>
         <!-- Header Navbar: style can be found in header.less -->
         <nav class="navbar navbar-static-top">
@@ -74,7 +74,9 @@
                                 <img src="Admin/dist/img/user.png" class="img-circle" alt="User Image">
 
                                 <p>
-                                    Admin
+                                     @if(Auth::check())
+                                      {{Auth::user()->name}}
+                                      @endif
                                 </p>
                             </li>
                             <!-- Menu Body -->
@@ -84,9 +86,13 @@
                                 <div class="pull-left">
                                     <a href="#" class="btn btn-default btn-flat">Profile</a>
                                 </div>
-                                <div class="pull-right">
-                                    <a href="#" class="btn btn-default btn-flat">Sign out</a>
+                               <div class="pull-right">
+                                    <a href="{{ route('logout') }}" class="btn btn-default btn-flat"   onclick="event.preventDefault();
+                                                     document.getElementById('logout-form').submit();">Déconnexion</a>
                                 </div>
+                                 <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                                        @csrf
+                                    </form>
                             </li>
                         </ul>
                     </li>
@@ -115,23 +121,45 @@
 
             <ul class="sidebar-menu" data-widget="tree">
 <br>
-                <li class="treeview">
+               <li class="treeview">
                     <a href="#">
+                        <i class="fa fa-dashboard"></i> <span>Acceuil</span>
+
+                    </a>
+</li>
+ <li class="active">
+                   <a href="auto_ecole">
+                      <i class="fa fa-fw fa-home"></i>
+                        <span>Auto Ecole</span>
+
+              </a>
+                </li>
+ <li>
+                   <a href="crudMoniteur">
+                        <i class="fa fa-fw fa-users"></i>  
+                        <span>Moniteurs</span>
+
+              </a>
+                </li>
+
+                <li>
+                   <a href="crudFormateur">
+                        <i class="fa fa-fw fa-users"></i>  <span>Formateurs</span>
+                 </a>
+                </li>
+   
+
+
+
+
+                <li >
+                    <a href="crudCandidats">
                         <i class="fa fa-fw fa-users"></i> <span>Candidats</span>
 
-                    </a>
-
+                    
+</a>
                 </li>
-                <li class="treeview">
-                    <a href="#">
-                        <i class="fa fa-files-o"></i>
-                        <span> Consulter Paiements</span>
-
-                    </a>
-
-                </li>
-
-                <li class="treeview">
+               <li class="treeview">
                     <a href="#">
                         <i class="fa fa-book"></i>
                         <span>Séances</span>
@@ -140,31 +168,48 @@
                 </span>
                     </a>
                     <ul class="treeview-menu">
-                        <li><a href="../charts/chartjs.html"><i class="fa fa-circle-o"></i>Séances Pratiques</a></li>
-                        <li><a href="../charts/morris.html"><i class="fa fa-circle-o"></i> Séances Théoriques</a></li>
+                        <li><a href="crudSeancePratique"><i class="fa fa-circle-o"></i>Séances Pratiques</a></li>
+                        <li><a href="crudSeance"><i class="fa fa-circle-o"></i> Séances Théoriques</a></li>
 
                     </ul>
                 </li>
-                <li class="treeview">
-                    <a href="#">
-                        <i class="fa fa-edit"></i>
-                        <span>Examens</span>
+                <li >
+                    <a href="crudExamen">
+
+                    <i class="fa fa-edit"></i>
+                    <span>Examens</span>
 
                     </a>
 
                 </li>
-                <li class="treeview">
-                    <a href="#">
-                        <i class="fa fa-fw fa-users"></i>  <span>Moniteurs</span>
+                 
+                <li class="crudResultat">
+                                    <a href="#">
+                                        <i class="fa fa-fw fa-graduation-cap"></i> <span>Résultats</span>
+                                       
+                </span>
+                                    </a>
 
-                    </a>
-                </li>
-                <li class="treeview active">
-                    <a href="#">
-                        <i class="fa fa-fw fa-users"></i>  <span>Formateurs</span>
-                    </a>
+                                </li> 
+                
+                <li >
+                                    <a href="crudFacture">
+                                        <i class="fa fa-fw fa-calculator"></i> <span>Facture</span>
 
-                </li>
+                </span>
+                                    </a>
+
+                                </li> 
+   <li >
+
+                    <a href="crudAlertes">
+                      <i class="fa fa-bell-o"></i>
+
+                        <span> Alertes</span>
+</a>
+                    </li>
+     
+
 
 
             </ul>
@@ -196,7 +241,11 @@
             <form role="form" action="{{route('seanceTheoriqueajout')}}" method="POST">
             {{ csrf_field() }}
             <!-- text input -->
-            
+            <div class="form-group">
+                    <label>Type Cours</label>
+                    <input type="text" class="form-control" name="Type_Cours"  placeholder=" cours théoriques">
+                   
+                </div>
             <div class="form-group">
                     <label>Liste Formateurs</label>
                   <select name="liste_formateurs" class="form-control">
@@ -210,11 +259,7 @@
                   </select>
                 </div>
                 
-<div class="form-group">
-                    <label>Type Cours</label>
-                    <input type="text" class="form-control" name="Type_Cours"  placeholder=" cours théoriques">
-                   
-                </div>
+
                 <div class="form-group">
                     <label>Date Cours</label>
                     <input type="date" class="form-control" name="Date_Cours"  placeholder=" entrer nom">

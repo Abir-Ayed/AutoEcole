@@ -34,7 +34,7 @@ class CandidatController extends Controller
 
             $newCandidat=new Candidat();
             $newCandidat->nom=$request->input('nom');
-            $newCandidat->prenom=$request->input('prenom');
+           
             $newCandidat->date_naissance=$request->input('date_naissance');
             $newCandidat->sexe=$request->input('sexe');
             $newCandidat->Num_tel=$request->input('Num_tel');
@@ -65,7 +65,7 @@ class CandidatController extends Controller
 
           $newCandidat=new Candidat();
           $newCandidat->nom=$request->input('nom');
-          $newCandidat->prenom=$request->input('prenom');
+          
           $newCandidat->date_naissance=$request->input('date_naissance');
           $newCandidat->sexe=$request->input('sexe');
           $newCandidat->Num_tel=$request->input('Num_tel');

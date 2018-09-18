@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 use App\Seance;
 use App\Formateur;
 use App\Moniteur;
+use App\Candidat;
+use DB;
 class SeanceController extends Controller 
 {
 
@@ -100,8 +102,8 @@ class SeanceController extends Controller
 
    function destroy($id)
     {
-        $seance =Seance::find($id);
-        $seance->delete();
+        Seance::where('id',$id)->delete();
+      
         return redirect('crudSeance');
     }
     
@@ -117,42 +119,84 @@ class SeanceController extends Controller
 
 
 
+
+
+
  public function createSeancePratique(Request $request)
     {
-    $moniteur=Moniteur::all();
+  
+     $moniteur=Moniteur::all();
+     $candidat=Candidat::all();
+      //   die('tt');
 
-  //dd($request);
+    //dd($request);
+  //$horaire=DB::table('seances')->where('Horaire',($request->input('Horaire')))->count();
+   $date=DB::table('seances')->where('Date_Cours',($request->input('Date_Cours')))->count();
+  $horaire=DB::table('seances')->where('Horaire',($request->input('Horaire')))->count();
+  
+   //  $seance=DB::table('')->count();
       if($request->isMethod('POST')){
-        $moniteurId=Moniteur::where('nom',($request->input('Liste_moniteurs')))->value('id');
-          //dd($candidatId);
-        // $newFormateur=new Formateur();
+        
+     
+       //dd($date);
+      if($date > 2 && $horaire > 1){
 
+  return redirect('ajoutSeancePratique')->with('success','cette date est occuper ressayer une autre date');
+
+       
+}
+else{
+   $moniteur=DB::table('moniteurs')->where('nom',($request->input('Liste_moniteurs'))) ->value('id');
+        
+
+     
+        $candidat=DB::table('candidats')->where('nom',($request->input('Liste_candidats')))->value('id');
           $newSeance=new Seance();
+          $newSeance->moniteur_id=$moniteur;
+            $newSeance->candidat_id=$candidat;
           $newSeance->Type_Cours=$request->input('Type_Cours');
           $newSeance->Date_Cours=$request->input('Date_Cours');
           $newSeance->Horaire=$request->input('Horaire');
-          //$newSeance->formateur_id= ;
-          $newSeance->Duree=$request->input('duree');
+          $newSeance->Duree=$request->input('Duree');
+          $newSeance->Liste_moniteurs=$request->input('Liste_moniteurs');
+          $newSeance->Liste_candidats=$request->input('Liste_candidats');
           $newSeance->Montant=$request->input('Montant');
-          $newSeance->moniteur_id=$moniteurId;
-          $newSeance->moniteur_id=1;
-      if($request->input('Type_Cours')=='seance pratique'){
-            $newSeance->typeboolean=0;
-          }
-         $newSeance->save();
+          
 
+           $newSeance->save();
+          
+}
           return redirect('crudSeancePratique');
-      }
-    // dd($request->all());
-      return view('crudSeancePratique.ajoutSeancePratique',compact('moniteur'));
-
-
-
-
   }
+   //dd($request->all());
+      return view('crudSeancePratique.ajoutSeancePratique',['moniteur'=>$moniteur],['candidat'=>$candidat]);
+
+}
   
 
   
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
    public function indexSeance()
 
     {
@@ -178,7 +222,7 @@ public function updateSeance(Request $request,$id)
           $newSeance->Date_Cours=$request->input('Date_Cours');
           $newSeance->Horaire=$request->input('Horaire');
           //$newSeance->formateur_id= ;
-          $newSeance->Duree=$request->input('duree');
+          $newSeance->Duree=$request->input('Duree');
           $newSeance->Montant=$request->input('Montant');
 
           $newSeance->moniteur_id=$moniteurId;
@@ -198,8 +242,8 @@ public function updateSeance(Request $request,$id)
   }
   function destroySeance($id)
     {
-        $seance =Seance::find($id);
-        $seance->delete();
+      Seance::where('id',$id)->delete();
+       
         return redirect('crudSeancePratique');
     }
     

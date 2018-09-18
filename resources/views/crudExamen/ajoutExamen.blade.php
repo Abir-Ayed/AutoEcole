@@ -134,8 +134,8 @@
             </h1>
             <ol class="breadcrumb">
                 <li><a href="#"><i class="fa fa-dashboard"></i>Acceuil</a></li>
-                <li><a href="crudExamen">Gestion Examens</a></li>
-                <li><a href="ajoutExamen">Ajouter Examens</a></li>
+                <li><a href="http://localhost/Auto_ecole/public/crudExamen">Gestion Examens</a></li>
+                <li><a href="http://localhost/Auto_ecole/public/ajoutExamen">Ajouter Examens</a></li>
 
             </ol>
         </section>
@@ -158,9 +158,11 @@
                             <label>Liste Candidats</label><br>
 
                             <select name="Liste_candidats" class="form-control">
-                                    @foreach($cand as $value)
-                                        <option>
-                                            {{$value->nom}}
+                                    @foreach($cand as $liste)
+                                        <option >
+                                            {{$liste->nom}}
+
+                                        
                                         </option>
                                     @endforeach
 
@@ -171,7 +173,7 @@
 
                         <div class="form-group">
                             <label>Date Examen</label>
-                            <input type="date" class="form-control" name="date_examen" placeholder=" entrer date ">
+                            <input type="date" class="form-control" name="Date_Examen" placeholder=" entrer date ">
 
                         </div>
                         <div class="form-group">
@@ -417,13 +419,19 @@
                             <!-- /.search form -->
                             <!-- sidebar menu: : style can be found in sidebar.less -->
                             <ul class="sidebar-menu" data-widget="tree">
-
-                                <li class="treeview">
+<li class="treeview">
                     <a href="#">
                         <i class="fa fa-dashboard"></i> <span>Acceuil</span>
 
                     </a>
 </li>
+ <li class="active">
+                   <a href="auto_ecole">
+                      <i class="fa fa-fw fa-home"></i>
+                        <span>Auto Ecole</span>
+
+              </a>
+                </li>
  <li>
                    <a href="crudMoniteur">
                         <i class="fa fa-fw fa-users"></i>  
@@ -473,22 +481,35 @@
 
                 </li>
                  
-                <li >
-                                    <a href="crudResultat">
+                <li class="crudResultat">
+                                    <a href="#">
                                         <i class="fa fa-fw fa-graduation-cap"></i> <span>Résultats</span>
-                                        <span class="pull-right-container">
-                  <i class="fa fa-angle-left pull-right"></i>
+                                       
                 </span>
                                     </a>
 
                                 </li> 
                 
-                <li>
-                    <a href="crudPaiement">
-                        <i class="fa fa-files-o"></i>
-                        <span> Consulter Paiements</span>
+                <li >
+                                    <a href="crudFacture">
+                                        <i class="fa fa-fw fa-calculator"></i> <span>Facture</span>
+
+                </span>
+                                    </a>
+
+                                </li> 
+   <li >
+
+                    <a href="crudAlertes">
+                      <i class="fa fa-bell-o"></i>
+
+                        <span> Alertes</span>
 </a>
                     </li>
+     
+
+
+
 
  
      

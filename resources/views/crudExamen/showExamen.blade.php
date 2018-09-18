@@ -38,9 +38,9 @@
         <!-- Logo -->
         <a href="../../index2.html" class="logo">
             <!-- mini logo for sidebar mini 50x50 pixels -->
-            <span class="logo-mini"><b>A</b>LT</span>
+            <span class="logo-mini"><b>A</b>EC</span>
             <!-- logo for regular state and mobile devices -->
-            <span class="logo-lg"><b>Admin</b>LTE</span>
+            <span class="logo-lg"><b>Auto Ecole</b>LTE</span>
         </a>
         <!-- Header Navbar: style can be found in header.less -->
         <nav class="navbar navbar-static-top">
@@ -97,8 +97,10 @@
                                 <img src="Admin/dist/img/user.png" class="img-circle" alt="User Image">
 
                                 <p>
-                                    Alexander Pierce - Web Developer
-                                    <small>Member since Nov. 2012</small>
+                                      
+                                     @if(Auth::check())
+                                      {{Auth::user()->name}}
+                                      @endif
                                 </p>
                             </li>
                             <!-- Menu Body -->
@@ -109,8 +111,12 @@
                                     <a href="#" class="btn btn-default btn-flat">Profile</a>
                                 </div>
                                 <div class="pull-right">
-                                    <a href="#" class="btn btn-default btn-flat">Sign out</a>
+                                    <a href="{{ route('logout') }}" class="btn btn-default btn-flat"   onclick="event.preventDefault();
+                                                     document.getElementById('logout-form').submit();">Déconnexion</a>
                                 </div>
+                                 <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                                        @csrf
+                                    </form>
                             </li>
                         </ul>
                     </li>
@@ -134,7 +140,7 @@
             </h1>
             <ol class="breadcrumb">
                 <li><a href="#"><i class="fa fa-dashboard"></i>Acceuil</a></li>
-                <li><a href="crudExamen">Gestion Examens</a></li>
+                <li><a href="http://localhost/Auto_ecole/public/crudExamen">Gestion Examens</a></li>
 
             </ol>
         </section>
@@ -163,7 +169,7 @@
                             <table id="example2" class="table table-bordered table-hover">
                                 <thead>
                                 <tr>
-                                    <td> Liste Candidats</td>
+                                    <th> Liste Candidats</th>
                                     <th>Date Examen</th>
                                     <th>Type Examen</th>
                                     <th>Horaire</th>
@@ -411,8 +417,9 @@
                                     <img src="Admin/dist/img/user.png" class="img-circle" alt="User Image">
                                 </div>
                                 <div class="pull-left info">
-                                    <p>User</p>
-                                    <a href="#"><i class="fa fa-circle text-success"></i> Online</a>
+                                    <p>Admin</p>
+                                    <a href="#"><i class="fa fa-circle text-success"></i> 
+                                    en ligne</a>
                                 </div>
                             </div>
                             <!-- search form -->
@@ -431,6 +438,13 @@
 
                     </a>
 </li>
+ <li class="active">
+                   <a href="auto_ecole">
+                      <i class="fa fa-fw fa-home"></i>
+                        <span>Auto Ecole</span>
+
+              </a>
+                </li>
  <li>
                    <a href="crudMoniteur">
                         <i class="fa fa-fw fa-users"></i>  
@@ -480,24 +494,31 @@
 
                 </li>
                  
-                <li class="treeview">
+                <li class="crudResultat">
                                     <a href="#">
                                         <i class="fa fa-fw fa-graduation-cap"></i> <span>Résultats</span>
-                                        <span class="pull-right-container">
-                  <i class="fa fa-angle-left pull-right"></i>
+                                       
                 </span>
                                     </a>
 
                                 </li> 
                 
-                <li>
-                    <a href="#">
-                        <i class="fa fa-files-o"></i>
-                        <span> Consulter Paiements</span>
+                <li >
+                                    <a href="crudFacture">
+                                        <i class="fa fa-fw fa-calculator"></i> <span>Facture</span>
+
+                </span>
+                                    </a>
+
+                                </li> 
+   <li >
+
+                    <a href="crudAlertes">
+                      <i class="fa fa-bell-o"></i>
+
+                        <span> Alertes</span>
 </a>
                     </li>
-
- 
      
 
 

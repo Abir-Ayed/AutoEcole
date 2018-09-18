@@ -12,7 +12,7 @@ class CreatePaiementsTable extends Migration {
 			$table->increments('id');
 			$table->integer('candidat_id')->unsigned();
             $table->foreign('candidat_id')->references('id')->on('candidats');
-        
+            $table->string('candidat');
 			$table->date('date_operation');
 			$table->integer('montant');
             $table->string('mode_paiement');

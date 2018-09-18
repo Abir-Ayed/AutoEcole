@@ -47,4 +47,23 @@ class ResetPasswordController extends Controller
             ['token' => $token, 'email' => $request->email]
         );
     }
+
+     public function showResetForm(Request $request, $token = null)
+    {
+
+        if (is_null($token)) {
+            return $this->getEmail();
+        }
+        $email = $request->input('email');
+
+        if (property_exists($this, 'resetView')) {
+            return view($this->resetView)->with(compact('token', 'email'));
+        }
+
+        if (view()->exists('auth.passwords.reset')) {
+            return view('auth.passwords.reset')->with(compact('token', 'email'));
+        }
+
+        return view('passwords.reset')->with(compact('token', 'email'));
+    }
 }

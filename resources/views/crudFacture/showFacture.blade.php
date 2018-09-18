@@ -38,9 +38,9 @@
         <!-- Logo -->
         <a href="../../index2.html" class="logo">
             <!-- mini logo for sidebar mini 50x50 pixels -->
-            <span class="logo-mini"><b>A</b>LT</span>
+            <span class="logo-mini"><b>A</b>EC</span>
             <!-- logo for regular state and mobile devices -->
-            <span class="logo-lg"><b>Admin</b>LTE</span>
+            <span class="logo-lg"><b>Auto Ecole</b></span>
         </a>
         <!-- Header Navbar: style can be found in header.less -->
         <nav class="navbar navbar-static-top">
@@ -123,98 +123,92 @@
         </nav>
     </header>
     <!-- Left side column. contains the logo and sidebar -->
+ <div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+      <h1>
+        Facture
+        @foreach($facture as $newFacture)
+        <small></small>@endforeach
+      </h1>
+      <ol class="breadcrumb">
+        <li><a href="#"><i class="fa fa-dashboard"></i>Acceuil</a></li>
+        <li><a href="#">Ajouter Facture</a></li>
+        <li class="active">Facture</li>
+      </ol>
+    </section>
 
+    <div class="pad margin no-print">
+      <div class="alert alert-success alert-dismissible" style="margin-bottom: 0!important;">
+        <h4><i class="fa fa-info"></i> Note:</h4>
+       vous devez obligatoirement apporter cette facture avant de passer votre examen
+      </div>
+    </div>
 
+ <section class="invoice">
+      <!-- title row -->
+      <div class="row">
+        <div class="col-xs-12">
+          <h2 class="page-header">
+            Candidat : {{$newFacture->candidat }} 
+            <small class="pull-right">Numéro de facture:#000 {{$newFacture->id }}</small>
+          </h2>
+        </div>
+        <!-- /.col -->
+      </div>
+      <!-- info row -->
+    
+      <!-- /.row -->
+
+      <!-- Table row -->
+     
+
+      <div class="row">
+        <!-- accepted payments column -->
+       
+        <!-- /.col -->
+        <div class="col-xs-6">
+          <p class="lead">Date facture {{$newFacture->date_facture }} </p>
+
+          <div class="table-responsive">
+            <table class="table">
+              <tr>
+                <th style="width:50%">Montant totale:</th>
+                <td>$ {{ $newFacture->montant_totale}}</td>
+              </tr>
+              <tr>
+                <th>Montant payé</th>
+                <td>${{ $newFacture->montant_paye }} </td>
+              </tr>
+              <tr>
+                <th>Montant restant</th>
+                <td>${{ $newFacture->montant_restant}}</td>
+              </tr>
+             
+            </table>
+          </div>
+        </div>
+        <!-- /.col -->
+      </div>
+      <!-- /.row -->
+
+      <!-- this row will not appear when printing -->
+      <div class="row no-print">
+        <div class="col-xs-12">
+          <button type="button" class="btn btn-warning" onclick="printContent('div1')" style="margin-left: 900px;margin-top: -40px"> <i class="fa fa-print"></i> imprimer</button>
+         
+        </div>
+      </div>
+    </section>
     <!-- Content Wrapper. Contains page content -->
-    <div class="content-wrapper">
-        <!-- Content Header (Page header) -->
-        <section class="content-header">
-            <h1>
-                Gestion Paiements
-            </h1>
-            <ol class="breadcrumb">
-                <li><a href="#"><i class="fa fa-dashboard"></i>Acceuil</a></li>
-                <li><a href="crudExamen">Gestion paiements</a></li>
-
-            </ol>
-        </section>
+  
 
 
 
         <!-- Main content -->
 
             <!-- Main content -->
-            <section class="content">
-                <div class="row">
-                    <div class="col-xs-12">
-                        <div class="box">
-                            <div class="box-header">
 
-                            </div>
-                            <!-- /.box-header -->
-                            <div class="box-body">
-                                <div class="box-body">
-                                    <a href="ajoutPaiement"><button type="button" class="btn btn-default" data-toggle="modal" data-target="#modal-default">
-                                        <div class="col-md-3 col-sm-4"><i class="fa fa-fw fa-plus"></i> Ajouter paiemen</div>
-                                    </button></a>
-
-                                </div>
-                            </div>
-                            <table id="example2" class="table table-bordered table-hover">
-                                <thead>
-                                <tr>
-                                    <th>Candidat</th>
-                                    <th>Date facture</th>
-                                    <th>Montant payé</th>
-                                    <th>Montant restant</th>
-                                    <th>Montant totale</th>
-                                    <th>Action</th>
-                                </tr>
-                                </thead>
-                                <tbody>
-                              
-                                <tr>
-                                    <td>
-                                        @foreach($cand as $candidat)
-                                        {{$candidat->nom }}
-                                        {{$candidat->prenom }}
-                                        @endforeach
-                                    </td>
-                                     @foreach($facture as $newFacture)
-                                      <td>{{$newFacture->date_facture }}  </td>
-                                     <td>{{ $newFacture->montant_paye }} </td>
-                                    <td> {{ $newFacture->montant_restant}}</td>
-                                    <td> {{ $newFacture->montant_totale}}</td>
-
-                                   
-
-                                    <td>
-                                        <div class="btn-group">
-
-                                                  <a href="crudPaiement/{{$newFacture->id}}">    <button type="button" class="btn btn-info btn-flat"><i class="fa fa-trash-o"></i></button></a>
-                                            <a href="editPaiement/{{$newFacture->id}}">    <button type="button" class="btn btn-danger btn-flat"><i class="fa fa-edit"></i></button></a>
-                                            <a href="affichePaiement/{{$newFacture->id}}"><button type="button" class="btn btn-warning btn-flat"><i class="fa fa-fw fa-file-text-o"></i></button></a>
-
-                                        </div>
-
-                                    </td>
-                                </tr>
- @endforeach
-                                </tbody>
-                                <tfoot>
-                                <tr>
-                                     <th>Candidat</th>
-                                    <th>Date facture</th>
-                                    <th>Montant payé</th>
-                                    <th>Montant restant</th>
-                                    <th>Montant totale</th>
-                                    <th>Action</th>
-                                </tr>
-                                </tfoot>
-                            </table>
-                        </div>
-                        <!-- /.box-body -->
-                    </div>
                     <!-- /.box -->
 
 

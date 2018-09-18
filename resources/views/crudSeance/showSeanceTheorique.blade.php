@@ -240,9 +240,9 @@ $('#submit').html('bonjjour');
                                     <table id="example2" class="table table-bordered table-hover">
                                         <thead>
                                         <tr>
-                                            <th>Liste Formateurs</th>
                                             <th>Type de cours</th>
-                                            <th>Date de cours</th>
+                                            <th>Liste Formateurs</th>
+                                           <th>Date de cours</th>
                                             <th>Horaire</th>
                                            <th>Durée</th>
                                            <th>Montant</th>
@@ -274,8 +274,9 @@ $('#submit').html('bonjjour');
                                         </tr>
                                       @endforeach
                                         </tbody>
+                                        <th>Type de cours</th>
                                         <th>Liste Formateurs</th>
-                                         <th>Type de cours</th>
+                                        
                                          <th>Date de cours</th>
                                             <th>Horaire</th>
                                             <th>Durée</th>

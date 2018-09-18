@@ -17,6 +17,7 @@ use Illuminate\Http\Request;
 
 use App\Candidat;
 use App\Examen;
+use DB;
 class ExamenController extends Controller
 {
 
@@ -35,15 +36,21 @@ $cand=Candidat::all();
 
       if($request->isMethod('POST')){
          // dd($request);
-         $candidatId=Candidat::where('nom',($request->input('Liste_candidats')))->value('id');
+        //$candidat=Candidat::where('nom',($request->input('Liste_candidats')))->value('id');
           //dd($candidatId);
-          $newExamen=new Examen();
+       
+        $candidat=DB::table('candidats')->where('nom',($request->input('Liste_candidats')))
+        
 
-          $newExamen->Date_Examen=$request->input('date_examen');
+      ->value('id');
+          $newExamen=new Examen();
+          $newExamen->candidat_id=$candidat;
+          $newExamen->Date_Examen=$request->input('Date_Examen');
           $newExamen->Type_Examen=$request->input('Type_Examen');
           $newExamen->Horaire=$request->input('horaire');
-          $newExamen->candidat_id=$candidatId;
-
+          $newExamen->Liste_candidats=$request->input('Liste_candidats');
+;
+          
 
           $newExamen->save();
 
@@ -55,6 +62,8 @@ $cand=Candidat::all();
 
 
   }
+
+
 
   /**
    * Store a newly created resource in storage.
@@ -87,17 +96,18 @@ $cand=Candidat::all();
 
         if($request->isMethod('POST')){
 
-           $candidatId=Candidat::where('nom',($request->input('Liste_candidats')))->value('id');
+
+ $candidat=DB::table('candidats')->where('nom',($request->input('Liste_candidats')))->value('id');
+        
+         
             // dd($candidatId);
-            $newExamen= new Examen();
-           // var_dump($newExamen);
+            $newExamen= Examen::find($id);
 
-            $newExamen->Date_Examen=$request->input('date_examen');
-            $newExamen->Type_Examen=$request->input('Type_Examen');
-            $newExamen->Horaire=$request->input('horaire');
-            $newExamen->candidat_id=$candidatId;
-            
-
+          $newExamen->candidat_id=$candidat;
+          $newExamen->Date_Examen=$request->input('Date_Examen');
+          $newExamen->Type_Examen=$request->input('Type_Examen');
+          $newExamen->Horaire=$request->input('horaire');
+          $newExamen->Liste_candidats=$request->input('Liste_candidats');
 
             $newExamen->save();
             return redirect('crudExamen');

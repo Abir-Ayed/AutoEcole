@@ -40,9 +40,9 @@
         <!-- Logo -->
         <a href="../../index2.html" class="logo">
             <!-- mini logo for sidebar mini 50x50 pixels -->
-            <span class="logo-mini"><b>A</b>LT</span>
+            <span class="logo-mini"><b>A</b>EC</span>
             <!-- logo for regular state and mobile devices -->
-            <span class="logo-lg"><b>Admin</b>LTE</span>
+            <span class="logo-lg"><b>Auto Ecole</b></span>
         </a>
         <!-- Header Navbar: style can be found in header.less -->
         <nav class="navbar navbar-static-top">
@@ -74,7 +74,9 @@
                                 <img src="Admin/dist/img/user.png" class="img-circle" alt="User Image">
 
                                 <p>
-                                    Admin
+                                      @if(Auth::check())
+                                      {{Auth::user()->name}}
+                                      @endif
                                 </p>
                             </li>
                             <!-- Menu Body -->
@@ -84,9 +86,13 @@
                                 <div class="pull-left">
                                     <a href="#" class="btn btn-default btn-flat">Profile</a>
                                 </div>
-                                <div class="pull-right">
-                                    <a href="#" class="btn btn-default btn-flat">Sign out</a>
+                                  <div class="pull-right">
+                                    <a href="{{ route('logout') }}" class="btn btn-default btn-flat"   onclick="event.preventDefault();
+                                                     document.getElementById('logout-form').submit();">Déconnexion</a>
                                 </div>
+                                    <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                                        @csrf
+                                    </form>
                             </li>
                         </ul>
                     </li>
@@ -109,7 +115,7 @@
                 </div>
                 <div class="pull-left info">
                     <p>Admin</p>
-                    <a href="#"><i class="fa fa-circle text-success"></i> Online</a>
+                    <a href="#"><i class="fa fa-circle text-success"></i> en ligne</a>
                 </div>
             </div>
 
@@ -121,8 +127,15 @@
 
                     </a>
 </li>
+ <li class="active">
+                   <a href="/ajoutAuto">
+                      <i class="fa fa-fw fa-home"></i>
+                        <span>Auto Ecole</span>
+
+              </a>
+                </li>
  <li>
-                   <a href="crudMoniteur">
+                   <a href="/ajoutMoniteur">
                         <i class="fa fa-fw fa-users"></i>  
                         <span>Moniteurs</span>
 
@@ -130,7 +143,7 @@
                 </li>
 
                 <li>
-                   <a href="crudFormateur">
+                   <a href="/ajoutFormateur">
                         <i class="fa fa-fw fa-users"></i>  <span>Formateurs</span>
                  </a>
                 </li>
@@ -140,7 +153,7 @@
 
 
                 <li >
-                    <a href="crudCandidats">
+                    <a href="/ajoutCandidat">
                         <i class="fa fa-fw fa-users"></i> <span>Candidats</span>
 
                     
@@ -155,13 +168,13 @@
                 </span>
                     </a>
                     <ul class="treeview-menu">
-                        <li><a href="crudSeancePratique"><i class="fa fa-circle-o"></i>Séances Pratiques</a></li>
-                        <li><a href="crudSeance"><i class="fa fa-circle-o"></i> Séances Théoriques</a></li>
+                        <li><a href="/ajoutSeancePratique"><i class="fa fa-circle-o"></i>Séances Pratiques</a></li>
+                        <li><a href="/ajoutSeanceTheorique"><i class="fa fa-circle-o"></i> Séances Théoriques</a></li>
 
                     </ul>
                 </li>
                 <li >
-                    <a href="crudExamen">
+                    <a href="/ajoutExamen">
 
                     <i class="fa fa-edit"></i>
                     <span>Examens</span>
@@ -170,22 +183,34 @@
 
                 </li>
                  
-                <li class="treeview">
+                <li class="/ajoutResultat">
                                     <a href="#">
                                         <i class="fa fa-fw fa-graduation-cap"></i> <span>Résultats</span>
-                                        <span class="pull-right-container">
-                  <i class="fa fa-angle-left pull-right"></i>
+                                       
                 </span>
                                     </a>
 
                                 </li> 
                 
-                <li>
-                    <a href="#">
-                        <i class="fa fa-files-o"></i>
-                        <span> Consulter Paiements</span>
+                <li >
+                                    <a href="/ajoutFacture">
+                                        <i class="fa fa-fw fa-calculator"></i> <span>Facture</span>
+
+                </span>
+                                    </a>
+
+                                </li> 
+   <li >
+
+                    <a href="/ajoutAlerte">
+                      <i class="fa fa-bell-o"></i>
+
+                        <span> Alertes</span>
 </a>
                     </li>
+     
+
+
 
  
      
@@ -213,11 +238,22 @@
                     <h3 class="box-title">Ajouter Séances Pratiques</h3>
                 </div>
                 <!-- /.box-header -->
+                @if(session()->has('success'))                              
+<div class="alert alert-success">
+    {{session()->get('success')}}
+    
+    
+</div>
+@endif
                 <div class="box-body">
             <form role="form" action="{{route('seancePratiqueajout')}}" method="POST">
             {{ csrf_field() }}
             <!-- text input -->
-            
+             <div class="form-group">
+                    <label>Type Cours</label>
+                    <input type="text" class="form-control" name="Type_Cours"  placeholder=" cours théoriques">
+                   
+                </div>
             <div class="form-group">
                     <label>Liste moniteurs</label>
                   <select name="Liste_moniteurs" class="form-control">
@@ -230,12 +266,21 @@
                       </option>
                   </select>
                 </div>
-                
-                  <div class="form-group">
-                    <label>Type Cours</label>
-                    <input type="text" class="form-control" name="Type_Cours"  placeholder=" cours théoriques">
-                   
+                     
+            <div class="form-group">
+                    <label>Liste candidats</label>
+                  <select name="Liste_candidats" class="form-control">
+                      <option>
+                           @foreach($candidat as $value)
+                                        <option>
+                                            {{$value->nom}}
+                                        </option>
+                                    @endforeach
+                      </option>
+                  </select>
                 </div>
+                
+                 
                 <div class="form-group">
                     <label>Date Cours</label>
                     <input type="date" class="form-control" name="Date_Cours"  placeholder=" entrer nom">
@@ -249,7 +294,7 @@
                 </div>
                 <div class="form-group ">
                     <label>Durée</label>
-                    <input type="time" class="form-control" name="duree" placeholder=" entrer duree">
+                    <input type="time" class="form-control" name="Duree" placeholder=" entrer duree">
                    
                 </div>
                <div class="form-group ">
@@ -258,16 +303,16 @@
                    
                 </div>
                
-              
-
+             
                 <div class="modal-footer">
                     <button type="reset" class="btn btn-default pull-left" data-dismiss="modal">Fermer</button>
                     <input type="submit"  class="btn btn-primary btn-warning" value="Enregistrer">
 
                 </div>
+
             </form>
 
-
+</div>
                     </div>
                     <!-- /.modal-content -->
                 </div>
