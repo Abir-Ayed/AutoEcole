@@ -239,8 +239,9 @@ $('#submit').html('bonjjour');
                                     <table id="example2" class="table table-bordered table-hover">
                                         <thead>
                                         <tr>
-                                            <th>Id Examen</th>
-                                            <th>Resultat</th>
+                                            <th>Candidat</th>
+                                            <th>Note examen1</th>
+                                             <th>Note examen2</th>
                                             <th>Etat</th>
                                             <th>Description</th>
                                           
@@ -253,8 +254,9 @@ $('#submit').html('bonjjour');
 
                                    @foreach($resultat as $newResultat)
                                         <tr>
-                                            <td>{{$newResultat->examen_id }}  </td>
-                                        <td>{{$newResultat->resultat }}  </td>
+                                            <td>{{$newResultat->candidat }}  </td>
+                                        <td>{{$newResultat->note_examen1 }}  </td>
+                                         <td>{{$newResultat->note_examen2 }}  </td>
                                             <td>{{$newResultat->etat }}  </td>
                                             <td>{{ $newResultat->description }} </td>
                                           
@@ -271,8 +273,9 @@ $('#submit').html('bonjjour');
                                         </tr>
                                       @endforeach
                                         </tbody>
-                                        <th>Id Examen</th>
-                                            <th>Resultat</th>
+                                        <th>Candidat</th>
+                                            <th>Note examen1</th>
+                                             <th>Note examen2</th>
                                             <th>Etat</th>
                                             <th>Description</th>
                                           

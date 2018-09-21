@@ -40,6 +40,7 @@ class ResultatController extends Controller
           $newResultat=new Resultat();
 
           $newResultat->examen_id=1;
+           $newResultat->candidat=$request->input('candidat');
            $newResultat->note_examen1=$request->input('note_examen1');
             $newResultat->note_examen2=$request->input('note_examen2');
            $newResultat->etat=$request->input('etat');
