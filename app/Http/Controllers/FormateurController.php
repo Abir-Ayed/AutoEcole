@@ -15,8 +15,8 @@ class FormateurController extends Controller
 
       if($request->isMethod('POST')){
  $this->validate($request,[
-     'nom'=>'required|max:10',
-     'prenom'=>'required|max:10',
+     'nom'=>'required|max:30',
+     
      'date_naissance'=>'required',
      'sexe'=>'required',
      'Num_tel'=>'required|numeric',
@@ -30,7 +30,7 @@ class FormateurController extends Controller
 
           $newFormateur=new Formateur();
           $newFormateur->nom=$request->input('nom');
-          $newFormateur->prenom=$request->input('prenom');
+        
           $newFormateur->date_naissance=$request->input('date_naissance');
           $newFormateur->sexe=$request->input('sexe');
           $newFormateur->Num_tel=$request->input('Num_tel');
@@ -57,9 +57,9 @@ class FormateurController extends Controller
   {
       if($request->isMethod('POST')){
           //die('tt');
-          $newFormateur=new Formateur();
+          $newFormateur=Formateur::find($id);
           $newFormateur->nom=$request->input('nom');
-          $newFormateur->prenom=$request->input('prenom');
+        
           $newFormateur->date_naissance=$request->input('date_naissance');
           $newFormateur->sexe=$request->input('sexe');
           $newFormateur->Num_tel=$request->input('Num_tel');

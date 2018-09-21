@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>AdminLTE 2 | Data Tables</title>
+    <title>Auto Ecole</title>
     <!-- Tell the browser to be responsive to screen width -->
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
     <!-- Bootstrap 3.3.7 -->
@@ -115,7 +115,7 @@
                 </div>
                 <div class="pull-left info">
                     <p>Admin</p>
-                    <a href="#"><i class="fa fa-circle text-success"></i> Online</a>
+                    <a href="#"><i class="fa fa-circle text-success"></i>en ligne</a>
                 </div>
             </div>
 
@@ -204,35 +204,31 @@
                 </div>
                 <!-- /.box-header -->
                 <div class="box-body">
-                    <form  role="form" action="{{url("/editFormateur/".$newFormateur->id)}}" method="POST">
+                    <form  role="form" action="{{url("/editFormateur/".$newFormateur['id'])}}" method="POST">
                     {{ csrf_field() }}
                     <!-- text input -->
 
                         <div class="form-group ">
-                            <label>Nom</label>
-                            <input type="text" class="form-control" name="nom"    value="{{$newFormateur->nom}} " placeholder=" entrer nom">
+                            <label>Nom complet</label>
+                            <input type="text" class="form-control" name="nom"    value="{{$newFormateur['nom']}} " placeholder=" entrer nom">
 
                         </div>
-
-                        <div class="form-group ">
-                            <label>Prenom</label>
-                            <input type="text" class="form-control" name="prenom" placeholder=" entrer prenom"  value="{{$newFormateur->prenom}} ">
-
-                        </div>
-                        <div class="form-group ">
-                            <label>Date de naissance</label>
-                            <input type="date" class="form-control" name="date_naissance" value="{{$newFormateur->date_naissance}} " placeholder="entrer votre date de naissance">
+  <div class="form-group">
+                            <label>Date naissance</label>
+                            <input type="date" class="form-control" name="date_naissance" placeholder=" entrer date " value="{{$newFormateur['date_naissance']}}">
 
                         </div>
+                       
+                        
 
                         <div class="form-group ">
                             <label>Sexe</label>
-                            <input type="text" class="form-control"  name="sexe" placeholder="Homme ou Femme" value="{{$newFormateur->sexe}} ">
+                            <input type="text" class="form-control"  name="sexe" placeholder="Homme ou Femme" value="{{$newFormateur['sexe']}} ">
 
                         </div>
                         <div class="form-group">
                             <label>telephone</label>
-                            <input type="text" class="form-control"  name="Num_tel" placeholder="entrer votre telephone"  value="{{$newFormateur->Num_tel}} ">
+                            <input type="text" class="form-control"  name="Num_tel" placeholder="entrer votre telephone"  value="{{$newFormateur['Num_tel']}} ">
 
                         </div>
 

@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>AdminLTE 2 | Data Tables</title>
+    <title>Auto Ecole</title>
     <!-- Tell the browser to be responsive to screen width -->
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
     <!-- Bootstrap 3.3.7 -->
@@ -49,9 +49,9 @@ $('#submit').html('bonjjour');
         <!-- Logo -->
         <a href="../../index2.html" class="logo">
             <!-- mini logo for sidebar mini 50x50 pixels -->
-            <span class="logo-mini"><b>A</b>EC</span>
+            <span class="logo-mini"><b>A</b>LT</span>
             <!-- logo for regular state and mobile devices -->
-            <span class="logo-lg"><b>Auto Ecole</b></span>
+            <span class="logo-lg"><b>Admin</b>LTE</span>
         </a>
         <!-- Header Navbar: style can be found in header.less -->
         <nav class="navbar navbar-static-top">
@@ -75,7 +75,8 @@ $('#submit').html('bonjjour');
                     <li class="dropdown user user-menu">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                             <img src="Admin/dist/img/user.png" class="user-image" alt="User Image">
-                            <span class="hidden-xs">Admin</span>
+                            <span class="hidden-xs">Admin
+                            </span>
                         </a>
                         <ul class="dropdown-menu">
                             <!-- User image -->
@@ -83,14 +84,12 @@ $('#submit').html('bonjjour');
                                 <img src="Admin/dist/img/user.png" class="img-circle" alt="User Image">
 
                                 <p>
+                                    Admin
+
                                      @if(Auth::check())
                                       {{Auth::user()->name}}
                                       @endif
                                 </p>
-                                
-                            </li>
-                             <li class="nav-item dropdown">
-                              
                             </li>
                             <!-- Menu Body -->
 
@@ -98,12 +97,11 @@ $('#submit').html('bonjjour');
                             <li class="user-footer">
                                 <div class="pull-left">
                                     <a href="#" class="btn btn-default btn-flat">Profile</a>
+
                                 </div>
                                 <div class="pull-right">
-                                
                                     <a href="{{ route('logout') }}" class="btn btn-default btn-flat"   onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">Déconnexion</a>
-                                
                                 </div>
                                 <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                                         @csrf
@@ -124,24 +122,33 @@ $('#submit').html('bonjjour');
         <!-- sidebar: style can be found in sidebar.less -->
         <section class="sidebar">
             <!-- Sidebar user panel -->
+                <section class="sidebar">
+            <!-- Sidebar user panel -->
             <div class="user-panel">
                 <div class="pull-left image">
                     <img src="Admin/dist/img/user.png" class="img-circle" alt="User Image">
                 </div>
                 <div class="pull-left info">
                     <p>Admin</p>
-                    <a href="#"><i class="fa fa-circle text-success"></i> Online</a>
+                    <a href="#"><i class="fa fa-circle text-success"></i> en ligne</a>
                 </div>
             </div>
 
             <ul class="sidebar-menu" data-widget="tree">
-<li></li><br>
-<li class="treeview">
+<br>
+              <li class="treeview">
                     <a href="#">
                         <i class="fa fa-dashboard"></i> <span>Acceuil</span>
 
                     </a>
 </li>
+ <li class="active">
+                   <a href="auto_ecole">
+                      <i class="fa fa-fw fa-home"></i>
+                        <span>Auto Ecole</span>
+
+              </a>
+                </li>
  <li>
                    <a href="crudMoniteur">
                         <i class="fa fa-fw fa-users"></i>  
@@ -161,7 +168,7 @@ $('#submit').html('bonjjour');
 
 
                 <li >
-                    <a href="crudCandidats">
+                    <a href="crudCandidat">
                         <i class="fa fa-fw fa-users"></i> <span>Candidats</span>
 
                     
@@ -191,27 +198,37 @@ $('#submit').html('bonjjour');
 
                 </li>
                  
-                <li class="treeview">
+                <li class="crudResultat">
                                     <a href="#">
                                         <i class="fa fa-fw fa-graduation-cap"></i> <span>Résultats</span>
-                                        <span class="pull-right-container">
-                  <i class="fa fa-angle-left pull-right"></i>
+                                       
                 </span>
                                     </a>
 
                                 </li> 
                 
-                <li>
-                    <a href="#">
-                        <i class="fa fa-files-o"></i>
-                        <span> Consulter Paiements</span>
+                <li >
+                                    <a href="crudFacture">
+                                        <i class="fa fa-fw fa-calculator"></i> <span>Facture</span>
+
+                </span>
+                                    </a>
+
+                                </li> 
+   <li >
+
+                    <a href="crudAlerte">
+                      <i class="fa fa-bell-o"></i>
+
+                        <span> Alertes</span>
 </a>
                     </li>
+     
+
+
 
  
      
-    
-
             </ul>
         </section>
         <!-- /.sidebar -->
@@ -219,22 +236,22 @@ $('#submit').html('bonjjour');
 
     <!-- Content Wrapper. Contains page content -->
     <div class="content-wrapper">
-       
+        
 
             <section class="content-header">
                 <h1>
-                    Gestion Formateurs
+                    Gestion formateurs
 
                 </h1>
                 <ol class="breadcrumb">
                     <li><a href="#"><i class="fa fa-dashboard"></i>Acceuil</a></li>
-                    <li><a href="crudFormateur">Gestion Formateurs</a></li>
+                    <li><a href="http://localhost/Auto_ecole/public/crudFormateur">Gestion formateurs</a></li>
 
                 </ol>
             </section>
 
             <!-- Main content -->
-            <section class="content">
+              <section class="content">
                 <div class="row">
                     <div class="col-xs-12">
                         <div class="box">
@@ -252,8 +269,8 @@ $('#submit').html('bonjjour');
                                     <table id="example2" class="table table-bordered table-hover">
                                         <thead>
                                         <tr>
-                                            <th>Nom</th>
-                                            <th>Prenom</th>
+                                            <th>Nom complet</th>
+                                            
                                             <th>Date de naissance</th>
                                             <th>Sexe</th>
                                             <th>Telephone</th>
@@ -268,7 +285,7 @@ $('#submit').html('bonjjour');
                                         <tr>
 
                                             <td>{{$newFormateur->nom }}  </td>
-                                            <td>{{ $newFormateur->prenom }} </td>
+                                        
                                             <td>{{$newFormateur->date_naissance }}</td>
                                             <td> {{ $newFormateur->sexe}}</td>
                                             <td> {{$newFormateur->Num_tel }}</td>
@@ -287,7 +304,7 @@ $('#submit').html('bonjjour');
                                         </tbody>
 
                                         <th>Nom</th>
-                                        <th>Prenom</th>
+                                        
                                         <th>Date de naissance</th>
                                         <th>Sexe</th>
                                         <th>Telephone</th>
@@ -508,7 +525,6 @@ $('#submit').html('bonjjour');
     <div class="control-sidebar-bg"></div>
 </div>
 <!-- ./wrapper -->
-<script src="{{ asset('js/app.js') }}" defer></script>
 
 <!-- jQuery 3 -->
 <script src="{{asset('Admin/bower_components/jquery/dist/jquery.min.js')}}"></script>

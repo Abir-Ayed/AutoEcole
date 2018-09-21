@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>AdminLTE 2 | Data Tables</title>
+    <title>Auto Ecole</title>
     <!-- Tell the browser to be responsive to screen width -->
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
     <!-- Bootstrap 3.3.7 -->
@@ -83,7 +83,9 @@ $('#submit').html('bonjjour');
                                 <img src="Admin/dist/img/user.png" class="img-circle" alt="User Image">
 
                                 <p>
-                                    Admin
+                                    @if(Auth::check())
+                                      {{Auth::user()->name}}
+                                      @endif
                                 </p>
                             </li>
                             <!-- Menu Body -->
@@ -94,7 +96,14 @@ $('#submit').html('bonjjour');
                                     <a href="#" class="btn btn-default btn-flat">Profile</a>
                                 </div>
                                 <div class="pull-right">
-                                    <a href="#" class="btn btn-default btn-flat">Sign out</a>
+                                    <a href="#" class="btn btn-default btn-flat">
+                                        
+                                        <a href="{{ route('logout') }}" class="btn btn-default btn-flat"   onclick="event.preventDefault();
+                                                     document.getElementById('logout-form').submit();">Déconnexion</a>
+                                    </a>
+                                     <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                                        @csrf
+                                    </form>
                                 </div>
                             </li>
                         </ul>
@@ -118,18 +127,25 @@ $('#submit').html('bonjjour');
                 </div>
                 <div class="pull-left info">
                     <p>Admin</p>
-                    <a href="#"><i class="fa fa-circle text-success"></i> Online</a>
+                    <a href="#"><i class="fa fa-circle text-success"></i> en ligne</a>
                 </div>
             </div>
 
-             <ul class="sidebar-menu" data-widget="tree">
-<li></li><br>
-<li class="treeview">
+            <ul class="sidebar-menu" data-widget="tree">
+<br>
+              <li class="treeview">
                     <a href="#">
                         <i class="fa fa-dashboard"></i> <span>Acceuil</span>
 
                     </a>
 </li>
+ <li class="active">
+                   <a href="auto_ecole">
+                      <i class="fa fa-fw fa-home"></i>
+                        <span>Auto Ecole</span>
+
+              </a>
+                </li>
  <li>
                    <a href="crudMoniteur">
                         <i class="fa fa-fw fa-users"></i>  
@@ -149,13 +165,13 @@ $('#submit').html('bonjjour');
 
 
                 <li >
-                    <a href="crudCandidats">
+                    <a href="crudCandidat">
                         <i class="fa fa-fw fa-users"></i> <span>Candidats</span>
 
                     
 </a>
                 </li>
-                   <li class="treeview">
+               <li class="treeview">
                     <a href="#">
                         <i class="fa fa-book"></i>
                         <span>Séances</span>
@@ -179,32 +195,41 @@ $('#submit').html('bonjjour');
 
                 </li>
                  
-                <li class="treeview">
+                <li class="crudResultat">
                                     <a href="#">
                                         <i class="fa fa-fw fa-graduation-cap"></i> <span>Résultats</span>
-                                        <span class="pull-right-container">
-                  <i class="fa fa-angle-left pull-right"></i>
+                                       
                 </span>
                                     </a>
 
                                 </li> 
                 
-                <li>
-                    <a href="#">
-                        <i class="fa fa-files-o"></i>
-                        <span> Consulter Paiements</span>
+                <li >
+                                    <a href="crudFacture">
+                                        <i class="fa fa-fw fa-calculator"></i> <span>Facture</span>
+
+                </span>
+                                    </a>
+
+                                </li> 
+   <li >
+
+                    <a href="crudAlerte">
+                      <i class="fa fa-bell-o"></i>
+
+                        <span> Alertes</span>
 </a>
                     </li>
+     
+
+
 
  
      
-    
-
             </ul>
         </section>
         <!-- /.sidebar -->
     </aside>
-
     <!-- Content Wrapper. Contains page content -->
     <div class="content-wrapper">
        
@@ -215,9 +240,8 @@ $('#submit').html('bonjjour');
 
                 </h1>
                 <ol class="breadcrumb">
-                    <li><a href="#"><i class="fa fa-dashboard"></i>Acceuil</a></li>
-                    <li><a href="crudSeancePratique">Gestion Séances Pratique</a></li>
-
+                  <li><a href="http://localhost/Auto_ecole/public/home"><i class="fa fa-dashboard"></i>Acceuil</a></li>
+                <li><a href="http://localhost/Auto_ecole/public/crudSeancePratique">Gestion Séances Pratiques</a></li>
                 </ol>
             </section>
 

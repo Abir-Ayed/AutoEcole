@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>AdminLTE 2 | Data Tables</title>
+    <title>Auto Ecole</title>
     <!-- Tell the browser to be responsive to screen width -->
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
     <!-- Bootstrap 3.3.7 -->
@@ -109,13 +109,13 @@
         <!-- sidebar: style can be found in sidebar.less -->
         <section class="sidebar">
             <!-- Sidebar user panel -->
-            <div class="user-panel">
+           <div class="user-panel">
                 <div class="pull-left image">
                     <img src="Admin/dist/img/user.png" class="img-circle" alt="User Image">
                 </div>
                 <div class="pull-left info">
                     <p>Admin</p>
-                    <a href="#"><i class="fa fa-circle text-success"></i>En ligne</a>
+                    <a href="#"><i class="fa fa-circle text-success"></i> en ligne</a>
                 </div>
             </div>
 
@@ -241,6 +241,14 @@
             <form role="form" action="{{url("/editSeancePratique/".$newSeance['id'])}}" method="POST">
             {{ csrf_field() }}
             <!-- text input -->
+
+            <div class="form-group {{ $errors->has('Type_Cours') ? 'has-error' : '' }}">
+                    <label>Type Cours</label>
+                    <input type="text" class="form-control" name="Type_Cours"  placeholder=" cours théoriques" value="{{$newSeance['Type_Cours']}} ">
+                      @if( $errors->has('Type_Cours'))
+                        <span class="help-block"> {{$errors->first('Type_Cours')}}</span>
+                    @endif
+                </div>
             
             <div class="form-group">
                     <label>Liste Moniteurs</label>
@@ -251,37 +259,59 @@
                                             {{$value->nom}}
                                         </option>
                                     @endforeach
-                      
+             
                   </select>
+                  
                 </div>
                   
-<div class="form-group">
-                    <label>Type Cours</label>
-                    <input type="text" class="form-control" name="Type_Cours"  placeholder=" cours théoriques" value="{{$newSeance['Type_Cours']}} ">
-                   
-                </div>
-                <div class="form-group">
-                    <label>Date Cours</label>
-                    <input type="date" class="form-control" name="Date_Cours"  placeholder="
-                     entrer date"  value="{{$newSeance['Date_Cours']}} ">
-                   
-                </div>
 
-  
-                <div class="form-group ">
-                   <label>Horaire</label>
-                    <input type="time" class="form-control" name="Horaire"  placeholder=" entrer date"  value="{{$newSeance['Horaire']}} ">
+ <div class="form-group">
+                    <label>Liste candidats</label>
+                  <select name="Liste_candidats" class="form-control" value="{{$newSeance['Liste_candidats']}} ">
+                      
+                           @foreach($candidats as $value)
+                                        <option>
+                                            {{$value->nom}}
+                                        </option>
+                                    @endforeach
+                  </select>
+                  
                 </div>
+                  
+  <div class="form-group {{ $errors->has('Date_Cours') ? 'has-error' : '' }}">
+                            <label>Date Cours</label>
+                            <input type="date" class="form-control" name="Date_Cours" placeholder=" entrer date " value="{{$newSeance['Date_Cours']}}">
+     @if( $errors->has('Date_Cours'))
+                        <span class="help-block"> {{$errors->first('Date_Cours')}}</span>
+                    @endif
+                        </div>
+
                
-               <div class="form-group ">
-                    <label>Durée</label>
-                    <input type="time" class="form-control" name="Duree" placeholder=" entrer duree"  value="{{$newSeance['Duree']}} ">
-                   
-                </div>
-               <div class="form-group ">
+               
+
+               <div class="form-group {{ $errors->has('Horaire') ? 'has-error' : '' }}">
+                            <label>Horaire</label>
+                            <input type="time" class="form-control" name="Horaire" placeholder=" entrer horaire " value="{{$newSeance['Horaire']}}">
+ @if( $errors->has('Horaire'))
+                        <span class="help-block"> {{$errors->first('Horaire')}}</span>
+                    @endif
+                        </div>
+
+<div class="form-group {{ $errors->has('Duree') ? 'has-error' : '' }}">
+                            <label>Durée</label>
+                            <input type="time" class="form-control" name="Duree" placeholder=" entrer la duree de la seance  " value="{{$newSeance['Duree']}}">
+  @if( $errors->has('Duree'))
+                        <span class="help-block"> {{$errors->first('Duree')}}</span>
+                    @endif
+                        </div>
+
+               
+               <div class="form-group {{ $errors->has('Montant') ? 'has-error' : '' }}">
                     <label>Montant</label>
                     <input type="text" class="form-control" name="Montant" placeholder=" entrer montant"  value="{{$newSeance['Montant']}} ">
-                   
+                   @if( $errors->has('Montant'))
+                        <span class="help-block"> {{$errors->first('Montant')}}</span>
+                    @endif
                 </div>
 
                 <div class="modal-footer">

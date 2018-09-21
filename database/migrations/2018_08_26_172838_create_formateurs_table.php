@@ -17,7 +17,7 @@ class CreateFormateursTable extends Migration
         Schema::create('formateurs', function (Blueprint $table) {
             $table->increments('id');
             $table->string('nom');
-            $table->string('prenom');
+            
             $table->date('date_naissance');
             $table->string('sexe');
             $table->string('Num_tel');

@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>AdminLTE 2 | Data Tables</title>
+    <title>Auto Ecole</title>
     <!-- Tell the browser to be responsive to screen width -->
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
     <!-- Bootstrap 3.3.7 -->
@@ -40,9 +40,9 @@
         <!-- Logo -->
         <a href="../../index2.html" class="logo">
             <!-- mini logo for sidebar mini 50x50 pixels -->
-            <span class="logo-mini"><b>A</b>LT</span>
+            <span class="logo-mini"><b>A</b>EC</span>
             <!-- logo for regular state and mobile devices -->
-            <span class="logo-lg"><b>Admin</b>LTE</span>
+            <span class="logo-lg"><b>Auto Ecole</b></span>
         </a>
         <!-- Header Navbar: style can be found in header.less -->
         <nav class="navbar navbar-static-top">
@@ -65,16 +65,18 @@
                     <!-- User Account: style can be found in dropdown.less -->
                     <li class="dropdown user user-menu">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                            <img src="Admin/dist/img/user.png" class="user-image" alt="User Image">
+                            <img src="{{ asset('Admin/user.png') }}" class="user-image" alt="User Image">
                             <span class="hidden-xs">Admin</span>
                         </a>
                         <ul class="dropdown-menu">
                             <!-- User image -->
                             <li class="user-header">
-                                <img src="Admin/dist/img/user.png" class="img-circle" alt="User Image">
+                                <img src="{{ asset('Admin/user.png') }}" class="img-circle" alt="User Image">
 
                                 <p>
-                                    Admin
+                                     @if(Auth::check())
+                                      {{Auth::user()->name}}
+                                      @endif
                                 </p>
                             </li>
                             <!-- Menu Body -->
@@ -84,9 +86,13 @@
                                 <div class="pull-left">
                                     <a href="#" class="btn btn-default btn-flat">Profile</a>
                                 </div>
-                                <div class="pull-right">
-                                    <a href="#" class="btn btn-default btn-flat">Sign out</a>
+                               <div class="pull-right">
+                                    <a href="{{ route('logout') }}" class="btn btn-default btn-flat"   onclick="event.preventDefault();
+                                                     document.getElementById('logout-form').submit();">Déconnexion</a>
                                 </div>
+                                 <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                                        @csrf
+                                    </form>
                             </li>
                         </ul>
                     </li>
@@ -105,33 +111,55 @@
             <!-- Sidebar user panel -->
             <div class="user-panel">
                 <div class="pull-left image">
-                    <img src="Admin/dist/img/user.png" class="img-circle" alt="User Image">
+                    <img src="{{ asset('Admin/user.png') }}" class="img-circle" alt="User Image">
                 </div>
                 <div class="pull-left info">
                     <p>Admin</p>
-                    <a href="#"><i class="fa fa-circle text-success"></i> Online</a>
+                    <a href="#"><i class="fa fa-circle text-success"></i> en ligne</a>
                 </div>
             </div>
 
             <ul class="sidebar-menu" data-widget="tree">
 <br>
-                <li class="treeview">
+               <li class="treeview">
                     <a href="#">
+                        <i class="fa fa-dashboard"></i> <span>Acceuil</span>
+
+                    </a>
+</li>
+ <li class="active">
+                   <a href="auto_ecole">
+                      <i class="fa fa-fw fa-home"></i>
+                        <span>Auto Ecole</span>
+
+              </a>
+                </li>
+ <li>
+                   <a href="crudMoniteur">
+                        <i class="fa fa-fw fa-users"></i>  
+                        <span>Moniteurs</span>
+
+              </a>
+                </li>
+
+                <li>
+                   <a href="crudFormateur">
+                        <i class="fa fa-fw fa-users"></i>  <span>Formateurs</span>
+                 </a>
+                </li>
+   
+
+
+
+
+                <li >
+                    <a href="crudCandidats">
                         <i class="fa fa-fw fa-users"></i> <span>Candidats</span>
 
-                    </a>
-
+                    
+</a>
                 </li>
-                <li class="treeview">
-                    <a href="#">
-                        <i class="fa fa-files-o"></i>
-                        <span> Consulter Paiements</span>
-
-                    </a>
-
-                </li>
-
-                <li class="treeview">
+               <li class="treeview">
                     <a href="#">
                         <i class="fa fa-book"></i>
                         <span>Séances</span>
@@ -140,31 +168,48 @@
                 </span>
                     </a>
                     <ul class="treeview-menu">
-                        <li><a href="../charts/chartjs.html"><i class="fa fa-circle-o"></i>Séances Pratiques</a></li>
-                        <li><a href="../charts/morris.html"><i class="fa fa-circle-o"></i> Séances Théoriques</a></li>
+                        <li><a href="crudSeancePratique"><i class="fa fa-circle-o"></i>Séances Pratiques</a></li>
+                        <li><a href="crudSeance"><i class="fa fa-circle-o"></i> Séances Théoriques</a></li>
 
                     </ul>
                 </li>
-                <li class="treeview">
-                    <a href="#">
-                        <i class="fa fa-edit"></i>
-                        <span>Examens</span>
+                <li >
+                    <a href="crudExamen">
+
+                    <i class="fa fa-edit"></i>
+                    <span>Examens</span>
 
                     </a>
 
                 </li>
-                <li class="treeview">
-                    <a href="#">
-                        <i class="fa fa-fw fa-users"></i>  <span>Moniteurs</span>
+                 
+                <li class="crudResultat">
+                                    <a href="#">
+                                        <i class="fa fa-fw fa-graduation-cap"></i> <span>Résultats</span>
+                                       
+                </span>
+                                    </a>
 
-                    </a>
-                </li>
-                <li class="treeview active">
-                    <a href="#">
-                        <i class="fa fa-fw fa-users"></i>  <span>Formateurs</span>
-                    </a>
+                                </li> 
+                
+                <li >
+                                    <a href="crudFacture">
+                                        <i class="fa fa-fw fa-calculator"></i> <span>Facture</span>
 
-                </li>
+                </span>
+                                    </a>
+
+                                </li> 
+   <li >
+
+                    <a href="crudAlertes">
+                      <i class="fa fa-bell-o"></i>
+
+                        <span> Alertes</span>
+</a>
+                    </li>
+     
+
 
 
             </ul>
@@ -181,8 +226,8 @@
             </h1>
             <ol class="breadcrumb">
                 <li><a href="#"><i class="fa fa-dashboard"></i>Acceuil</a></li>
-                <li><a href="crudSeance">Gestion Séances Théorique</a></li>
-                <li><a href="ajoutSeanceTheorique">Ajouter séances Théorique</a></li>
+                <li><a href="http://localhost/Auto_ecole/public/crudSeance">Gestion Séances Théorique</a></li>
+                <li><a href="http://localhost/Auto_ecole/public/editSeanceTheorique/{id}">Modifier séances Théorique</a></li>
 
             </ol>
         </section>
@@ -191,53 +236,82 @@
                 <div class="box-header with-border">
                     <h3 class="box-title">Ajouter séances théoriques</h3>
                 </div>
+                  @if(session()->has('success'))                              
+<div class="alert alert-success">
+    {{session()->get('success')}}
+    
+    
+</div>
+@endif
                 <!-- /.box-header -->
                 <div class="box-body">
-            <form role="form" action="{{url("/editSeanceTheorique/".$newSeance->id)}}" method="POST">
+            <form role="form" action="{{url("/editSeanceTheorique/".$newSeance['id'])}}" method="POST">
             {{ csrf_field() }}
             <!-- text input -->
-            
+            <div class="form-group">
+                    <label>Type Cours</label>
+                    <input type="text" class="form-control" name="Type_Cours"  placeholder=" cours théoriques" value="{{$newSeance['Type_Cours']}}" >
+                   
+                </div>
             <div class="form-group">
                     <label>Liste Formateurs</label>
-                  <select name="Liste_Formateurs" class="form-control" value="{{$newSeance->Liste_Formateurs}} ">
-                      <option>
+                  <select name="Liste_Formateurs" class="form-control" value="{{$newSeance['Liste_Formateurs']}} ">
+                      
                            @foreach($format as $value)
                                         <option>
                                             {{$value->nom}}
                                         </option>
                                     @endforeach
-                      </option>
+                    
                   </select>
                 </div>
                 
-<div class="form-group">
-                    <label>Type Cours</label>
-                    <input type="text" class="form-control" name="Type_Cours"  placeholder=" cours théoriques" value="{{$newSeance->Type_Cours}} ">
-                   
+             
+            <div class="form-group {{ $errors->has('Liste_candidats') ? 'has-error' : '' }}">
+                    <label>Liste candidats</label>
+                  <select name="Liste_candidats" class="form-control" value="{{$newSeance['Liste_candidats']}} ">
+                    
+                           @foreach($candidat as $value)
+                                        <option>
+                                            {{$value->nom}}
+                                        </option>
+                                    @endforeach
+                    
+                  </select>
+                  @if( $errors->has('Liste_candidats'))
+                        <span class="help-block"> {{$errors->first('Liste_candidats')}}</span>
+                    @endif
                 </div>
-                <div class="form-group">
+                <div class="form-group {{ $errors->has('Date_Cours') ? 'has-error' : '' }}">
                     <label>Date Cours</label>
-                    <input type="date" class="form-control" name="Date_Cours"  placeholder="
-                     entrer date"  value="old('Date_Cours') ">
-                   
+                    <input type="date" class="form-control" name="Date_Cours"  placeholder=" entrer nom"value="{{$newSeance['Date_Cours']}}" >
+                    @if( $errors->has('Date_Cours'))
+                        <span class="help-block"> {{$errors->first('Date_Cours')}}</span>
+                    @endif
                 </div>
 
-                <div class="form-group ">
-                   <label>Horaire</label>
-                    <input type="time" class="form-control" name="Horaire"  placeholder=" entrer date"  value="old('Horaire') ">
+                <div class="form-group {{ $errors->has('Horaire') ? 'has-error' : '' }}">
+                    <label>Horaire</label>
+                    <input type="time" class="form-control" name="Horaire" placeholder=" entrer horaire" value="{{$newSeance['Horaire']}}">
+                    @if( $errors->has('Horaire'))
+                        <span class="help-block"> {{$errors->first('Horaire')}}</span>
+                    @endif
                 </div>
-               
-                <div class="form-group ">
+               <div class="form-group {{ $errors->has('Duree') ? 'has-error' : '' }} ">
                     <label>Durée</label>
-                    <input type="time" class="form-control" name="duree" placeholder=" entrer duree"  value="{{$newSeance->duree}} ">
-                   
+                    <input type="time" class="form-control" name="Duree" placeholder=" entrer duree de la seance" value="{{$newSeance['Duree']}}">
+                    @if( $errors->has('Duree'))
+                        <span class="help-block"> {{$errors->first('Duree')}}</span>
+                    @endif
                 </div>
-               <div class="form-group ">
+               <div class="form-group {{ $errors->has('Montant') ? 'has-error' : '' }}  ">
                     <label>Montant</label>
-                    <input type="text" class="form-control" name="Montant" placeholder=" entrer montant"  value="{{$newSeance->Montant}} ">
-                   
-                   
+                    <input type="text" class="form-control" name="Montant" placeholder=" entrer montant"  value="{{$newSeance['Montant']}} ">
+                    @if( $errors->has('Montant'))
+                        <span class="help-block"> {{$errors->first('Montant')}}</span>
+                    @endif
                 </div>
+              
 
                 <div class="modal-footer">
                     <button type="reset" class="btn btn-default pull-left" data-dismiss="modal">Fermer</button>

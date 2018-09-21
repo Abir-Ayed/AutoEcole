@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>AdminLTE 2 | Data Tables</title>
+    <title>Auto Ecole</title>
     <!-- Tell the browser to be responsive to screen width -->
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
     <!-- Bootstrap 3.3.7 -->
@@ -128,14 +128,14 @@
                     </a>
 </li>
  <li class="active">
-                   <a href="/ajoutAuto">
+                   <a href="auto_ecole">
                       <i class="fa fa-fw fa-home"></i>
                         <span>Auto Ecole</span>
 
               </a>
                 </li>
  <li>
-                   <a href="/ajoutMoniteur">
+                   <a href="crudMoniteur">
                         <i class="fa fa-fw fa-users"></i>  
                         <span>Moniteurs</span>
 
@@ -143,7 +143,7 @@
                 </li>
 
                 <li>
-                   <a href="/ajoutFormateur">
+                   <a href="crudFormateur">
                         <i class="fa fa-fw fa-users"></i>  <span>Formateurs</span>
                  </a>
                 </li>
@@ -153,7 +153,7 @@
 
 
                 <li >
-                    <a href="/ajoutCandidat">
+                    <a href="crudCandidat">
                         <i class="fa fa-fw fa-users"></i> <span>Candidats</span>
 
                     
@@ -168,13 +168,13 @@
                 </span>
                     </a>
                     <ul class="treeview-menu">
-                        <li><a href="/ajoutSeancePratique"><i class="fa fa-circle-o"></i>Séances Pratiques</a></li>
-                        <li><a href="/ajoutSeanceTheorique"><i class="fa fa-circle-o"></i> Séances Théoriques</a></li>
+                        <li><a href="crudSeancePratique"><i class="fa fa-circle-o"></i>Séances Pratiques</a></li>
+                        <li><a href="crudSeance"><i class="fa fa-circle-o"></i> Séances Théoriques</a></li>
 
                     </ul>
                 </li>
                 <li >
-                    <a href="/ajoutExamen">
+                    <a href="crudExamen">
 
                     <i class="fa fa-edit"></i>
                     <span>Examens</span>
@@ -183,7 +183,7 @@
 
                 </li>
                  
-                <li class="/ajoutResultat">
+                <li class="crudResultat">
                                     <a href="#">
                                         <i class="fa fa-fw fa-graduation-cap"></i> <span>Résultats</span>
                                        
@@ -193,7 +193,7 @@
                                 </li> 
                 
                 <li >
-                                    <a href="/ajoutFacture">
+                                    <a href="crudFacture">
                                         <i class="fa fa-fw fa-calculator"></i> <span>Facture</span>
 
                 </span>
@@ -202,7 +202,7 @@
                                 </li> 
    <li >
 
-                    <a href="/ajoutAlerte">
+                    <a href="crudAlerte">
                       <i class="fa fa-bell-o"></i>
 
                         <span> Alertes</span>
@@ -226,9 +226,9 @@
                 Gestion Séances Pratiques
             </h1>
             <ol class="breadcrumb">
-                <li><a href="#"><i class="fa fa-dashboard"></i>Acceuil</a></li>
-                <li><a href="crudMoniteur">Gestion Séances Pratiques</a></li>
-                <li><a href="ajoutMoniteur">Ajouter Séances Pratiques</a></li>
+                <li><a href="http://localhost/Auto_ecole/public/home"><i class="fa fa-dashboard"></i>Acceuil</a></li>
+                <li><a href="http://localhost/Auto_ecole/public/crudSeancePratique">Gestion Séances Pratiques</a></li>
+                <li><a href="http://localhost/Auto_ecole/public/ajoutSeancePratique">Ajouter Séances Pratiques</a></li>
 
             </ol>
         </section>
@@ -249,14 +249,16 @@
             <form role="form" action="{{route('seancePratiqueajout')}}" method="POST">
             {{ csrf_field() }}
             <!-- text input -->
-             <div class="form-group">
+             <div class="form-group {{ $errors->has('Type_Cours') ? 'has-error' : '' }}">
                     <label>Type Cours</label>
-                    <input type="text" class="form-control" name="Type_Cours"  placeholder=" cours théoriques">
-                   
+                    <input type="text" class="form-control" name="Type_Cours"  placeholder=" cours théoriques" value="{{ Request::old('Type_Cours') }}">
+                    @if( $errors->has('Type_Cours'))
+                        <span class="help-block"> {{$errors->first('Type_Cours')}}</span>
+                    @endif
                 </div>
-            <div class="form-group">
+            <div class="form-group {{ $errors->has('Liste_moniteurs') ? 'has-error' : '' }}">
                     <label>Liste moniteurs</label>
-                  <select name="Liste_moniteurs" class="form-control">
+                  <select name="Liste_moniteurs" class="form-control" value="{{ Request::old('Liste_moniteurs') }}">
                       <option>
                            @foreach($moniteur as $value)
                                         <option>
@@ -265,11 +267,14 @@
                                     @endforeach
                       </option>
                   </select>
+                   @if( $errors->has('Liste_moniteurs'))
+                        <span class="help-block"> {{$errors->first('Liste_moniteurs')}}</span>
+                    @endif
                 </div>
                      
-            <div class="form-group">
+            <div class="form-group {{ $errors->has('Liste_candidats') ? 'has-error' : '' }}">
                     <label>Liste candidats</label>
-                  <select name="Liste_candidats" class="form-control">
+                  <select name="Liste_candidats" class="form-control" value="{{ Request::old('Liste_candidats') }}">
                       <option>
                            @foreach($candidat as $value)
                                         <option>
@@ -278,29 +283,40 @@
                                     @endforeach
                       </option>
                   </select>
+                  @if( $errors->has('Liste_candidats'))
+                        <span class="help-block"> {{$errors->first('Liste_candidats')}}</span>
+                    @endif
                 </div>
                 
                  
-                <div class="form-group">
+                <div class="form-group {{ $errors->has('Date_Cours') ? 'has-error' : '' }}">
                     <label>Date Cours</label>
-                    <input type="date" class="form-control" name="Date_Cours"  placeholder=" entrer nom">
-                   
+                    <input type="date" class="form-control" name="Date_Cours"  placeholder=" entrer date" value="{{ Request::old('Date_Cours') }}">
+                    @if( $errors->has('Date_Cours'))
+                        <span class="help-block"> {{$errors->first('Date_Cours')}}</span>
+                    @endif
                 </div>
 
-                <div class="form-group ">
+                <div class="form-group {{ $errors->has('Horaire') ? 'has-error' : '' }}">
                     <label>Horaire</label>
-                    <input type="time" class="form-control" name="Horaire" placeholder=" entrer horaire">
-                   
+                    <input type="time" class="form-control" name="Horaire" placeholder=" entrer horaire" value="{{ Request::old('Horaire') }}">
+                    @if( $errors->has('Horaire'))
+                        <span class="help-block"> {{$errors->first('Horaire')}}</span>
+                    @endif
                 </div>
-                <div class="form-group ">
+                <div class="form-group {{ $errors->has('Duree') ? 'has-error' : '' }} ">
                     <label>Durée</label>
-                    <input type="time" class="form-control" name="Duree" placeholder=" entrer duree">
-                   
+                    <input type="time" class="form-control" name="Duree" placeholder=" entrer duree de la seance" value="{{ Request::old('Duree') }}">
+                    @if( $errors->has('Duree'))
+                        <span class="help-block"> {{$errors->first('Duree')}}</span>
+                    @endif
                 </div>
-               <div class="form-group ">
+               <div class="form-group {{ $errors->has('Montant') ? 'has-error' : '' }}  ">
                     <label>Montant</label>
-                    <input type="text" class="form-control" name="Montant" placeholder=" entrer montant">
-                   
+                    <input type="text" class="form-control" name="Montant" placeholder=" entrer montant" value="{{ Request::old('Montant') }}">
+                    @if( $errors->has('Montant'))
+                        <span class="help-block"> {{$errors->first('Montant')}}</span>
+                    @endif
                 </div>
                
              

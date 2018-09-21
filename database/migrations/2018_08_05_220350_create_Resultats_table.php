@@ -13,8 +13,9 @@ class CreateResultatsTable extends Migration {
             $table->integer('examen_id')->unsigned();
             $table->foreign('examen_id')->references('id')->on('examens');
         
-			
-			$table->float('note_examen');
+			$table->string('candidat');
+			$table->float('note_examen1');
+			$table->float('note_examen2');
 			$table->string('etat');
 		    $table->string('description');
 		});

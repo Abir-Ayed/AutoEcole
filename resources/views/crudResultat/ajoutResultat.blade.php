@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>AdminLTE 2 | Data Tables</title>
+    <title>Auto Ecole</title>
     <!-- Tell the browser to be responsive to screen width -->
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
     <!-- Bootstrap 3.3.7 -->
@@ -42,7 +42,7 @@
             <!-- mini logo for sidebar mini 50x50 pixels -->
             <span class="logo-mini"><b>A</b>EC</span>
             <!-- logo for regular state and mobile devices -->
-            <span class="logo-lg"><b>Auto</b></span>
+            <span class="logo-lg"><b>Auto Ecole </b></span>
         </a>
         <!-- Header Navbar: style can be found in header.less -->
         <nav class="navbar navbar-static-top">
@@ -220,13 +220,28 @@
             <form role="form" action="{{route('Resultatajout')}}" method="POST">
             {{ csrf_field() }}
             <!-- text input -->
-             <div class="form-group">
-                    <label>Id Examen</label>
-                    <input type="text" class="form-control" name="examen_id"  placeholder=" entrer id d'examen">
-                   
+             
+                <div class="form-group {{ $errors->has('candidat') ? 'has-error' : '' }}">
+                    <label>Candidats</label>
+                  <select name="candidat" class="form-control" value="{{ Request::old('candidat') }}">
+                      <option>
+                           @foreach($candidats as $value)
+                                        <option>
+                                            {{$value->nom}}
+                                        </option>
+                                    @endforeach
+                      </option>
+                  </select>
+                  @if( $errors->has('candidat'))
+                        <span class="help-block"> {{$errors->first('candidat')}}</span>
+                    @endif
                 </div>
-                        <label>Note d'examen</label>
-                    <input type="text" class="form-control" name="note_examen"  placeholder=" entrer note examen">
+                 <div class="form-group">
+                        <label>Note d'examen1</label>
+                    <input type="text" class="form-control" name="note_examen1"  placeholder=" entrer note examen"></div>
+                    <div class="form-group">
+                        <label>Note d'examen2</label>
+                    <input type="text" class="form-control" name="note_examen2"  placeholder=" entrer note examen"></div>
                    <div class="form-group">
                     <label>Etat</label>
                   <select name="etat" class="form-control">

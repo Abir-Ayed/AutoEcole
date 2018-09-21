@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>AdminLTE 2 | Data Tables</title>
+    <title>Auto Ecole</title>
     <!-- Tell the browser to be responsive to screen width -->
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
     <!-- Bootstrap 3.3.7 -->
@@ -49,9 +49,9 @@ $('#submit').html('bonjjour');
         <!-- Logo -->
         <a href="../../index2.html" class="logo">
             <!-- mini logo for sidebar mini 50x50 pixels -->
-            <span class="logo-mini"><b>A</b>LT</span>
+            <span class="logo-mini"><b>A</b>EC</span>
             <!-- logo for regular state and mobile devices -->
-            <span class="logo-lg"><b>Admin</b>LTE</span>
+            <span class="logo-lg"><b>Auto Ecole</b></span>
         </a>
         <!-- Header Navbar: style can be found in header.less -->
         <nav class="navbar navbar-static-top">
@@ -112,24 +112,31 @@ $('#submit').html('bonjjour');
         <!-- sidebar: style can be found in sidebar.less -->
         <section class="sidebar">
             <!-- Sidebar user panel -->
-            <div class="user-panel">
+           <div class="user-panel">
                 <div class="pull-left image">
                     <img src="Admin/dist/img/user.png" class="img-circle" alt="User Image">
                 </div>
                 <div class="pull-left info">
                     <p>Admin</p>
-                    <a href="#"><i class="fa fa-circle text-success"></i> Online</a>
+                    <a href="#"><i class="fa fa-circle text-success"></i> en ligne</a>
                 </div>
             </div>
 
-             <ul class="sidebar-menu" data-widget="tree">
-<li></li><br>
-<li class="treeview">
+            <ul class="sidebar-menu" data-widget="tree">
+<br>
+              <li class="treeview">
                     <a href="#">
                         <i class="fa fa-dashboard"></i> <span>Acceuil</span>
 
                     </a>
 </li>
+ <li class="active">
+                   <a href="auto_ecole">
+                      <i class="fa fa-fw fa-home"></i>
+                        <span>Auto Ecole</span>
+
+              </a>
+                </li>
  <li>
                    <a href="crudMoniteur">
                         <i class="fa fa-fw fa-users"></i>  
@@ -149,7 +156,7 @@ $('#submit').html('bonjjour');
 
 
                 <li >
-                    <a href="crudCandidats">
+                    <a href="crudCandidat">
                         <i class="fa fa-fw fa-users"></i> <span>Candidats</span>
 
                     
@@ -164,7 +171,7 @@ $('#submit').html('bonjjour');
                 </span>
                     </a>
                     <ul class="treeview-menu">
-                        <li><a href="../charts/chartjs.html"><i class="fa fa-circle-o"></i>Séances Pratiques</a></li>
+                        <li><a href="crudSeancePratique"><i class="fa fa-circle-o"></i>Séances Pratiques</a></li>
                         <li><a href="crudSeance"><i class="fa fa-circle-o"></i> Séances Théoriques</a></li>
 
                     </ul>
@@ -179,27 +186,37 @@ $('#submit').html('bonjjour');
 
                 </li>
                  
-                <li class="treeview">
-                                    <a href="#">
+                <li class="crudResultat">
+                                    <a href="crudResultat">
                                         <i class="fa fa-fw fa-graduation-cap"></i> <span>Résultats</span>
-                                        <span class="pull-right-container">
-                  <i class="fa fa-angle-left pull-right"></i>
+                                       
                 </span>
                                     </a>
 
                                 </li> 
                 
-                <li>
-                    <a href="#">
-                        <i class="fa fa-files-o"></i>
-                        <span> Consulter Paiements</span>
+                <li >
+                                    <a href="crudFacture">
+                                        <i class="fa fa-fw fa-calculator"></i> <span>Facture</span>
+
+                </span>
+                                    </a>
+
+                                </li> 
+   <li >
+
+                    <a href="crudAlerte">
+                      <i class="fa fa-bell-o"></i>
+
+                        <span> Alertes</span>
 </a>
                     </li>
+     
+
+
 
  
      
-    
-
             </ul>
         </section>
         <!-- /.sidebar -->
@@ -242,6 +259,8 @@ $('#submit').html('bonjjour');
                                         <tr>
                                             <th>Type de cours</th>
                                             <th>Liste Formateurs</th>
+                                            <th>Liste Candidats</th>
+                                            
                                            <th>Date de cours</th>
                                             <th>Horaire</th>
                                            <th>Durée</th>
@@ -255,8 +274,10 @@ $('#submit').html('bonjjour');
 
                                    @foreach($seance as $newSeance)
                                         <tr>
-                                            <td>{{$newSeance->liste_formateurs }}  </td>
-                                        <td>{{$newSeance->Type_Cours }}  </td>
+                                            <td>{{$newSeance->Type_Cours }}  </td>
+                                            <td>{{$newSeance->Liste_Formateurs }}  </td>
+                                            <td>{{$newSeance->Liste_candidats }}  </td>
+                                        
                                             <td>{{$newSeance->Date_Cours }}  </td>
                                             <td>{{ $newSeance->Horaire }} </td>
                                            <td>{{ $newSeance->Duree }} </td>
@@ -275,7 +296,7 @@ $('#submit').html('bonjjour');
                                       @endforeach
                                         </tbody>
                                         <th>Type de cours</th>
-                                        <th>Liste Formateurs</th>
+                                        <th>Liste Candidats</th>
                                         
                                          <th>Date de cours</th>
                                             <th>Horaire</th>

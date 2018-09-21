@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>AdminLTE 2 | Data Tables</title>
+    <title>Auto Ecole</title>
     <!-- Tell the browser to be responsive to screen width -->
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
     <!-- Bootstrap 3.3.7 -->
@@ -117,29 +117,51 @@
                 </div>
                 <div class="pull-left info">
                     <p>Admin</p>
-                    <a href="#"><i class="fa fa-circle text-success"></i> Online</a>
+                    <a href="#"><i class="fa fa-circle text-success"></i> en ligne</a>
                 </div>
             </div>
 
             <ul class="sidebar-menu" data-widget="tree">
 <br>
-                <li class="treeview">
+              <li class="treeview">
                     <a href="#">
+                        <i class="fa fa-dashboard"></i> <span>Acceuil</span>
+
+                    </a>
+</li>
+ <li class="active">
+                   <a href="auto_ecole">
+                      <i class="fa fa-fw fa-home"></i>
+                        <span>Auto Ecole</span>
+
+              </a>
+                </li>
+ <li>
+                   <a href="crudMoniteur">
+                        <i class="fa fa-fw fa-users"></i>  
+                        <span>Moniteurs</span>
+
+              </a>
+                </li>
+
+                <li>
+                   <a href="crudFormateur">
+                        <i class="fa fa-fw fa-users"></i>  <span>Formateurs</span>
+                 </a>
+                </li>
+   
+
+
+
+
+                <li >
+                    <a href="crudCandidat">
                         <i class="fa fa-fw fa-users"></i> <span>Candidats</span>
 
-                    </a>
-
+                    
+</a>
                 </li>
-                <li class="treeview">
-                    <a href="#">
-                        <i class="fa fa-files-o"></i>
-                        <span> Consulter Paiements</span>
-
-                    </a>
-
-                </li>
-
-                <li class="treeview">
+               <li class="treeview">
                     <a href="#">
                         <i class="fa fa-book"></i>
                         <span>Séances</span>
@@ -148,33 +170,52 @@
                 </span>
                     </a>
                     <ul class="treeview-menu">
-                        <li><a href="../charts/chartjs.html"><i class="fa fa-circle-o"></i>Séances Pratiques</a></li>
-                        <li><a href="../charts/morris.html"><i class="fa fa-circle-o"></i> Séances Théoriques</a></li>
+                        <li><a href="crudSeancePratique"><i class="fa fa-circle-o"></i>Séances Pratiques</a></li>
+                        <li><a href="crudSeance"><i class="fa fa-circle-o"></i> Séances Théoriques</a></li>
 
                     </ul>
                 </li>
-                <li class="treeview">
-                    <a href="#">
-                        <i class="fa fa-edit"></i>
-                        <span>Examens</span>
+                <li >
+                    <a href="crudExamen">
+
+                    <i class="fa fa-edit"></i>
+                    <span>Examens</span>
 
                     </a>
 
                 </li>
-                <li class="treeview">
-                    <a href="#">
-                        <i class="fa fa-fw fa-users"></i>  <span>Moniteurs</span>
+                 
+                <li class="crudResultat">
+                                    <a href="#">
+                                        <i class="fa fa-fw fa-graduation-cap"></i> <span>Résultats</span>
+                                       
+                </span>
+                                    </a>
 
-                    </a>
-                </li>
-                <li class="treeview active">
-                    <a href="#">
-                        <i class="fa fa-fw fa-users"></i>  <span>Formateurs</span>
-                    </a>
+                                </li> 
+                
+                <li >
+                                    <a href="crudFacture">
+                                        <i class="fa fa-fw fa-calculator"></i> <span>Facture</span>
 
-                </li>
+                </span>
+                                    </a>
+
+                                </li> 
+   <li >
+
+                    <a href="crudAlerte">
+                      <i class="fa fa-bell-o"></i>
+
+                        <span> Alertes</span>
+</a>
+                    </li>
+     
 
 
+
+ 
+     
             </ul>
         </section>
         <!-- /.sidebar -->
@@ -206,20 +247,14 @@
             <!-- text input -->
 
                 <div class="form-group {{ $errors->has('nom') ? 'has-error' : '' }}">
-                    <label>Nom</label>
+                    <label>Nom complet</label>
                     <input type="text" class="form-control" name="nom"    value="{{ Request::old('nom') }}" placeholder=" entrer nom">
                     @if( $errors->has('nom'))
                         <span class="help-block"> {{$errors->first('nom')}}</span>
                     @endif
                 </div>
 
-                <div class="form-group {{ $errors->has('prenom') ? 'has-error' : '' }}">
-                    <label>Prenom</label>
-                    <input type="text" class="form-control" name="prenom" placeholder=" entrer prenom"  value="{{ Request::old('prenom') }}">
-                    @if( $errors->has('prenom'))
-                        <span class="help-block"> {{$errors->first('prenom')}}</span>
-                    @endif
-                </div>
+                
                 <div class="form-group {{ $errors->has('date_naissance') ? 'has-error' : '' }}">
                     <label>Date de naissance</label>
                     <input type="date" class="form-control" name="date_naissance"value="{{ Request::old('date_naissance') }}"  placeholder="entrer votre date de naissance">

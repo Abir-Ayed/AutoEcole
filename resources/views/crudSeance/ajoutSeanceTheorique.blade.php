@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>AdminLTE 2 | Data Tables</title>
+    <title>Auto Ecole</title>
     <!-- Tell the browser to be responsive to screen width -->
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
     <!-- Bootstrap 3.3.7 -->
@@ -115,7 +115,7 @@
                 </div>
                 <div class="pull-left info">
                     <p>Admin</p>
-                    <a href="#"><i class="fa fa-circle text-success"></i> Online</a>
+                    <a href="#"><i class="fa fa-circle text-success"></i> en ligne</a>
                 </div>
             </div>
 
@@ -226,8 +226,8 @@
             </h1>
             <ol class="breadcrumb">
                 <li><a href="#"><i class="fa fa-dashboard"></i>Acceuil</a></li>
-                <li><a href="crudMoniteur">Gestion Séances Théorique</a></li>
-                <li><a href="ajoutMoniteur">Ajouter séances Théorique</a></li>
+                <li><a href="http://localhost/Auto_ecole/public/crudSeance">Gestion Séances Théorique</a></li>
+                <li><a href="http://localhost/Auto_ecole/public/ajoutSeanceTheorique">Ajouter séances Théorique</a></li>
 
             </ol>
         </section>
@@ -236,6 +236,13 @@
                 <div class="box-header with-border">
                     <h3 class="box-title">Ajouter séances théoriques</h3>
                 </div>
+                  @if(session()->has('success'))                              
+<div class="alert alert-success">
+    {{session()->get('success')}}
+    
+    
+</div>
+@endif
                 <!-- /.box-header -->
                 <div class="box-body">
             <form role="form" action="{{route('seanceTheoriqueajout')}}" method="POST">
@@ -248,7 +255,7 @@
                 </div>
             <div class="form-group">
                     <label>Liste Formateurs</label>
-                  <select name="liste_formateurs" class="form-control">
+                  <select name="Liste_Formateurs" class="form-control">
                       <option>
                            @foreach($format as $value)
                                         <option>
@@ -259,27 +266,50 @@
                   </select>
                 </div>
                 
-
-                <div class="form-group">
+             
+            <div class="form-group {{ $errors->has('Liste_candidats') ? 'has-error' : '' }}">
+                    <label>Liste candidats</label>
+                  <select name="Liste_candidats" class="form-control" value="{{ Request::old('Liste_candidats') }}">
+                      <option>
+                           @foreach($candidat as $value)
+                                        <option>
+                                            {{$value->nom}}
+                                        </option>
+                                    @endforeach
+                      </option>
+                  </select>
+                  @if( $errors->has('Liste_candidats'))
+                        <span class="help-block"> {{$errors->first('Liste_candidats')}}</span>
+                    @endif
+                </div>
+                <div class="form-group {{ $errors->has('Date_Cours') ? 'has-error' : '' }}">
                     <label>Date Cours</label>
-                    <input type="date" class="form-control" name="Date_Cours"  placeholder=" entrer nom">
-                   
+                    <input type="date" class="form-control" name="Date_Cours"  placeholder=" entrer nom" value={{ Request::old('Date_Cours') }}>
+                    @if( $errors->has('Date_Cours'))
+                        <span class="help-block"> {{$errors->first('Date_Cours')}}</span>
+                    @endif
                 </div>
 
-                <div class="form-group ">
+                <div class="form-group {{ $errors->has('Horaire') ? 'has-error' : '' }}">
                     <label>Horaire</label>
-                    <input type="time" class="form-control" name="Horaire" placeholder=" entrer horaire">
-                   
+                    <input type="time" class="form-control" name="Horaire" placeholder=" entrer horaire" value="{{ Request::old('Horaire') }}">
+                    @if( $errors->has('Horaire'))
+                        <span class="help-block"> {{$errors->first('Horaire')}}</span>
+                    @endif
                 </div>
-                <div class="form-group ">
+               <div class="form-group {{ $errors->has('Duree') ? 'has-error' : '' }} ">
                     <label>Durée</label>
-                    <input type="time" class="form-control" name="duree" placeholder=" entrer duree">
-                   
+                    <input type="time" class="form-control" name="Duree" placeholder=" entrer duree de la seance" value="{{ Request::old('Duree') }}">
+                    @if( $errors->has('Duree'))
+                        <span class="help-block"> {{$errors->first('Duree')}}</span>
+                    @endif
                 </div>
-               <div class="form-group ">
+               <div class="form-group {{ $errors->has('Montant') ? 'has-error' : '' }}  ">
                     <label>Montant</label>
-                    <input type="text" class="form-control" name="Montant" placeholder=" entrer montant">
-                   
+                    <input type="text" class="form-control" name="Montant" placeholder=" entrer montant" value="{{ Request::old('Montant') }}">
+                    @if( $errors->has('Montant'))
+                        <span class="help-block"> {{$errors->first('Montant')}}</span>
+                    @endif
                 </div>
               
 

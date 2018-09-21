@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Resultat;
+use App\Candidat;
 class ResultatController extends Controller 
 {
 
@@ -32,14 +33,15 @@ class ResultatController extends Controller
       //   die('tt');
 
     //dd($request);
-
+ $candidats=Candidat::all();
       if($request->isMethod('POST')){
          // dd($request);
         
           $newResultat=new Resultat();
 
-          $newResultat->examen_id=$request->input('examen_id');
-           $newResultat->resultat=$request->input('note_examen');
+          $newResultat->examen_id=1;
+           $newResultat->note_examen1=$request->input('note_examen1');
+            $newResultat->note_examen2=$request->input('note_examen2');
            $newResultat->etat=$request->input('etat');
            $newResultat->description=$request->input('description');
 
@@ -49,7 +51,7 @@ class ResultatController extends Controller
           return redirect('crudResultat');
   }
   //dd($request->all());
-      return view('crudResultat.ajoutResultat');
+      return view('crudResultat.ajoutResultat',compact('candidats'));
 
 
 

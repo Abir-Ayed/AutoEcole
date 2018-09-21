@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>AdminLTE 2 | Widgets</title>
+    <title>Auto Ecole</title>
     <!-- Tell the browser to be responsive to screen width -->
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
     <!-- Bootstrap 3.3.7 -->
@@ -228,48 +228,59 @@
         <!-- sidebar: style can be found in sidebar.less -->
         <section class="sidebar">
             <!-- Sidebar user panel -->
+           <section class="sidebar">
+            <!-- Sidebar user panel -->
             <div class="user-panel">
                 <div class="pull-left image">
                     <img src="Admin/dist/img/user.png" class="img-circle" alt="User Image">
                 </div>
                 <div class="pull-left info">
                     <p>Admin</p>
-                    <a href="#"><i class="fa fa-circle text-success"></i> Online</a>
+                    <a href="#"><i class="fa fa-circle text-success"></i> en ligne</a>
                 </div>
             </div>
 
             <ul class="sidebar-menu" data-widget="tree">
-
-                <li class="treeview">
+<br>
+              <li class="treeview">
                     <a href="#">
                         <i class="fa fa-dashboard"></i> <span>Acceuil</span>
 
                     </a>
 </li>
-<li class="treeview">
-                    <a href="crudMoniteur">
-                        <i class="fa fa-fw fa-users"></i><span>Moniteurs</span>
+ <li class="active">
+                   <a href="auto_ecole">
+                      <i class="fa fa-fw fa-home"></i>
+                        <span>Auto Ecole</span>
 
-                    </a>
+              </a>
                 </li>
-                <li class="treeview active">
-                    <a href="crudFormateur"> 
+ <li>
+                   <a href="crudMoniteur">
+                        <i class="fa fa-fw fa-users"></i>  
+                        <span>Moniteurs</span>
 
-                 <i class="fa fa-fw fa-users"></i>
+              </a>
+                </li>
+
+                <li>
+                   <a href="crudFormateur">
+                        <i class="fa fa-fw fa-users"></i>  <span>Formateurs</span>
+                 </a>
+                </li>
+   
+
+
+
+
+                <li >
+                    <a href="crudCandidat">
+                        <i class="fa fa-fw fa-users"></i> <span>Candidats</span>
+
                     
-                        <span>Formateurs</span>
-                   </a>
-
+</a>
                 </li>
-                
-<li>
-                    <a href="crudCandidats">
-                        <i class="fa fa-fw fa-users"></i>  <span>Candidats</span>
-
-                    </a>
-
-                </li>
-                 <li class="treeview">
+               <li class="treeview">
                     <a href="#">
                         <i class="fa fa-book"></i>
                         <span>Séances</span>
@@ -278,42 +289,52 @@
                 </span>
                     </a>
                     <ul class="treeview-menu">
-                        <li><a href="../charts/chartjs.html"><i class="fa fa-circle-o"></i>Séances Pratiques</a></li>
-                        <li><a href="../charts/morris.html"><i class="fa fa-circle-o"></i> Séances Théoriques</a></li>
+                        <li><a href="crudSeancePratique"><i class="fa fa-circle-o"></i>Séances Pratiques</a></li>
+                        <li><a href="crudSeance"><i class="fa fa-circle-o"></i> Séances Théoriques</a></li>
 
                     </ul>
                 </li>
+                <li >
+                    <a href="crudExamen">
 
-                <li class="treeview">
-                    <a href="#">
-                        <i class="fa fa-edit"></i>
-
-                        <span>Examens</span>
+                    <i class="fa fa-edit"></i>
+                    <span>Examens</span>
 
                     </a>
 
                 </li>
-                 <li class="treeview">
+                 
+                <li class="crudResultat">
                                     <a href="#">
                                         <i class="fa fa-fw fa-graduation-cap"></i> <span>Résultats</span>
-                                        <span class="pull-right-container">
-                  <i class="fa fa-angle-left pull-right"></i>
+                                       
                 </span>
                                     </a>
 
-                                </li>
-                <li class="treeview">
-                    <a href="#">
-                        <i class="fa fa-files-o"></i>
-                        <span> Consulter Paiements</span>
-
-                    </a>
-
-                </li>
-
-               
+                                </li> 
                 
+                <li >
+                                    <a href="crudFacture">
+                                        <i class="fa fa-fw fa-calculator"></i> <span>Facture</span>
 
+                </span>
+                                    </a>
+
+                                </li> 
+   <li >
+
+                    <a href="crudAlerte">
+                      <i class="fa fa-bell-o"></i>
+
+                        <span> Alertes</span>
+</a>
+                    </li>
+     
+
+
+
+ 
+     
             </ul>
         </section>
         <!-- /.sidebar -->
@@ -328,8 +349,8 @@
                 </h1>
                 <ol class="breadcrumb">
                     <li><a href="#"><i class="fa fa-dashboard"></i>Acceuil</a></li>
-                    <li><a href="crudFormateur">Gestion Formateurs</a></li>
-                    <li><a href="#">Affiche Formateur</a></li>
+                    <li><a href="http://localhost/Auto_ecole/public/crudFormateur">Gestion Formateurs</a></li>
+                    <li><a href="http://localhost/Auto_ecole/public/afficheFormateur/{id}">Affiche Formateur</a></li>
 
                 </ol>
             </section>
@@ -357,11 +378,11 @@
 
                                         <tr>
 
-                  <td><li><a href="#">Nom : {{$newFormateur->nom}}</a></li>  </td>
-                <td><li><a href="#">Prenom : {{$newFormateur->prenom}}</a></li></td>
-                <td><li><a href="#">Sexe : {{$newFormateur->sexe}}</a></li></td>
-            <td><li><a href="#">Date de naissance : {{$newFormateur->date_naissance}}</a> </li></td>
-            <td><li><a href="#">Numero : {{$newFormateur->Num_tel}}</a></li></td><br><br>
+                  <td><li><a href="#">Nom : {{$newFormateur['nom']}}</a></li>  </td>
+        
+                <td><li><a href="#">Sexe : {{$newFormateur['sexe']}}</a></li></td>
+            <td><li><a href="#">Date de naissance : {{$newFormateur['date_naissance']}}</a> </li></td>
+            <td><li><a href="#">Numero : {{$newFormateur['Num_tel']}}</a></li></td><br><br>
             <td><li> <button type="button" class="btn btn-warning" onclick="printContent('div1')" style="margin-left: 100px;margin-top: -40px"> <i class="fa fa-print"></i> imprimer</button>
 
 

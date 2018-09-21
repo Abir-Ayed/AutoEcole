@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>AdminLTE 2 | Widgets</title>
+    <title>Auto Ecole</title>
     <!-- Tell the browser to be responsive to screen width -->
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
     <!-- Bootstrap 3.3.7 -->
@@ -81,9 +81,9 @@
         <!-- Logo -->
         <a href="../index2.html" class="logo">
             <!-- mini logo for sidebar mini 50x50 pixels -->
-            <span class="logo-mini"><b>A</b>LT</span>
+            <span class="logo-mini"><b>A</b>EC</span>
             <!-- logo for regular state and mobile devices -->
-            <span class="logo-lg"><b>Admin</b>LTE</span>
+            <span class="logo-lg"><b>Auto Ecole</b></span>
         </a>
         <!-- Header Navbar: style can be found in header.less -->
         <nav class="navbar navbar-static-top">
@@ -108,7 +108,7 @@
                                 <li><!-- start message -->
                                     <a href="#">
                                         <div class="pull-left">
-                                            <img src="Admin/dist/img/user.png" class="img-circle" alt="User Image">
+                                            <img src="{{ asset('Admin/user.png') }}" class="img-circle" alt="User Image">
                                         </div>
                                         <h4>
                                             Support Team
@@ -121,7 +121,7 @@
                                 <li>
                                     <a href="#">
                                         <div class="pull-left">
-                                            <img src="Admin/dist/img/user.png" class="img-circle" alt="User Image">
+                                            <img src="{{ asset('Admin/user.png') }}" class="img-circle" alt="User Image">
                                         </div>
                                         <h4>
                                             AdminLTE Design Team
@@ -133,7 +133,7 @@
                                 <li>
                                     <a href="#">
                                         <div class="pull-left">
-                                            <img src="Admin/dist/img/user.png" class="img-circle" alt="User Image">
+                                            <img src="{{ asset('Admin/user.png') }}" class="img-circle" alt="User Image">
                                         </div>
                                         <h4>
                                             Developers
@@ -145,7 +145,7 @@
                                 <li>
                                     <a href="#">
                                         <div class="pull-left">
-                                            <img src="Admin/dist/img/user.png" class="img-circle" alt="User Image">
+                                            <img src="{{ asset('Admin/user.png') }}" class="img-circle" alt="User Image">
                                         </div>
                                         <h4>
                                             Sales Department
@@ -177,17 +177,18 @@
                     <!-- User Account: style can be found in dropdown.less -->
                     <li class="dropdown user user-menu">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                            <img src="Admin/dist/img/user.png" class="user-image" alt="User Image">
+                            <img src="{{ asset('Admin/user.png') }}" class="user-image" alt="User Image">
                             <span class="hidden-xs">Admin</span>
                         </a>
                         <ul class="dropdown-menu">
                             <!-- User image -->
                             <li class="user-header">
-                                <img src="Admin/dist/img/user.png" class="img-circle" alt="User Image">
+                                <img src="{{ asset('Admin/user.png') }}" class="img-circle" alt="User Image">
 
                                 <p>
-                                    Alexander Pierce - Web Developer
-                                    <small>Member since Nov. 2012</small>
+                                    @if(Auth::check())
+                                      {{Auth::user()->name}}
+                                      @endif
                                 </p>
                             </li>
                             <!-- Menu Body -->
@@ -201,8 +202,12 @@
                                     <a href="#" class="btn btn-default btn-flat">Profile</a>
                                 </div>
                                 <div class="pull-right">
-                                    <a href="#" class="btn btn-default btn-flat">Sign out</a>
+                                     <a href="{{ route('logout') }}" class="btn btn-default btn-flat"   onclick="event.preventDefault();
+                                                     document.getElementById('logout-form').submit();">Déconnexion</a>
                                 </div>
+                                <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                                        @csrf
+                                    </form>
                             </li>
                         </ul>
                     </li>
@@ -223,48 +228,57 @@
         <!-- sidebar: style can be found in sidebar.less -->
         <section class="sidebar">
             <!-- Sidebar user panel -->
-            <div class="user-panel">
+           <div class="user-panel">
                 <div class="pull-left image">
-                    <img src="Admin/dist/img/user.png" class="img-circle" alt="User Image">
+                    <img src="{{ asset('Admin/user.png') }}" class="img-circle" alt="User Image">
                 </div>
                 <div class="pull-left info">
                     <p>Admin</p>
-                    <a href="#"><i class="fa fa-circle text-success"></i> Online</a>
+                    <a href="#"><i class="fa fa-circle text-success"></i> en ligne</a>
                 </div>
             </div>
 
             <ul class="sidebar-menu" data-widget="tree">
-
-                <li class="treeview">
+<br>
+               <li class="treeview">
                     <a href="#">
                         <i class="fa fa-dashboard"></i> <span>Acceuil</span>
 
                     </a>
 </li>
-<li class="treeview">
-                    <a href="crudMoniteur">
-                        <i class="fa fa-fw fa-users"></i><span>Moniteurs</span>
+ <li class="active">
+                   <a href="auto_ecole">
+                      <i class="fa fa-fw fa-home"></i>
+                        <span>Auto Ecole</span>
 
-                    </a>
+              </a>
                 </li>
-                <li class="treeview active">
-                    <a href="crudFormateur"> 
+ <li>
+                   <a href="crudMoniteur">
+                        <i class="fa fa-fw fa-users"></i>  
+                        <span>Moniteurs</span>
 
-                 <i class="fa fa-fw fa-users"></i>
+              </a>
+                </li>
+
+                <li>
+                   <a href="crudFormateur">
+                        <i class="fa fa-fw fa-users"></i>  <span>Formateurs</span>
+                 </a>
+                </li>
+   
+
+
+
+
+                <li >
+                    <a href="crudCandidats">
+                        <i class="fa fa-fw fa-users"></i> <span>Candidats</span>
+
                     
-                        <span>Formateurs</span>
-                   </a>
-
+</a>
                 </li>
-                
-<li>
-                    <a href="#">
-                        <i class="fa fa-fw fa-users"></i>  <span>Candidats</span>
-
-                    </a>
-
-                </li>
-                 <li class="treeview">
+               <li class="treeview">
                     <a href="#">
                         <i class="fa fa-book"></i>
                         <span>Séances</span>
@@ -273,41 +287,49 @@
                 </span>
                     </a>
                     <ul class="treeview-menu">
-                        <li><a href="../charts/chartjs.html"><i class="fa fa-circle-o"></i>Séances Pratiques</a></li>
-                        <li><a href="../charts/morris.html"><i class="fa fa-circle-o"></i> Séances Théoriques</a></li>
+                        <li><a href="crudSeancePratique"><i class="fa fa-circle-o"></i>Séances Pratiques</a></li>
+                        <li><a href="crudSeance"><i class="fa fa-circle-o"></i> Séances Théoriques</a></li>
 
                     </ul>
                 </li>
+                <li >
+                    <a href="crudExamen">
 
-                <li class="treeview">
-                    <a href="#">
-                        <i class="fa fa-edit"></i>
-
-                        <span>Examens</span>
+                    <i class="fa fa-edit"></i>
+                    <span>Examens</span>
 
                     </a>
 
                 </li>
-                 <li class="treeview">
-                                    <a href="#">
+                 
+                <li>
+                                    <a href="crudResultat">
                                         <i class="fa fa-fw fa-graduation-cap"></i> <span>Résultats</span>
-                                        <span class="pull-right-container">
-                  <i class="fa fa-angle-left pull-right"></i>
+                                       
                 </span>
                                     </a>
 
-                                </li>
-                <li class="treeview">
-                    <a href="#">
-                        <i class="fa fa-files-o"></i>
-                        <span> Consulter Paiements</span>
-
-                    </a>
-
-                </li>
-
-               
+                                </li> 
                 
+                <li >
+                                    <a href="crudFacture">
+                                        <i class="fa fa-fw fa-calculator"></i> <span>Facture</span>
+
+                </span>
+                                    </a>
+
+                                </li> 
+   <li >
+
+                    <a href="crudAlertes">
+                      <i class="fa fa-bell-o"></i>
+
+                        <span> Alertes</span>
+</a>
+                    </li>
+     
+
+
 
             </ul>
         </section>
@@ -318,17 +340,17 @@
     <div class="content-wrapper">
       <section class="content-header">
                 <h1>
-                    Gestion Formateurs
+                    Gestion Séances Théoriques
 
                 </h1>
                 <ol class="breadcrumb">
                     <li><a href="#"><i class="fa fa-dashboard"></i>Acceuil</a></li>
-                    <li><a href="crudSeance">Gestion Séances </a></li>
+                    <li><a href="http://localhost/Auto_ecole/public/crudSeance">Gestion Séances </a></li>
                     <li><a href="#">Affiche séance théorique d'une formateur</a></li>
 
                 </ol>
             </section>
-        <section class="content" style="margin-left: 400px;padding-top:100px;width: 1100px;height:100px;"
+        <section class="content" style="margin-left: 400px;padding-top:50px;width: 1100px;height:100px;"
                  };
                  }>
 
@@ -342,7 +364,7 @@
                         <div class="widget-user-header bg-yellow">
 
                             <!-- /.widget-user-image -->
-                            <h3 class="widget-user-username">Formateur</h3>
+                            <h3 class="widget-user-username">Séances Théoriques</h3>
 
                         </div>
                         <div id="div1">
@@ -351,12 +373,14 @@
                                     <ul class="nav nav-stacked"><br>
 
                                         <tr>
-
-                  <td><li><a href="#">Formateur: {{$newSeance->Liste_Formateurs}}</a></li>  </td>
-                <td><li><a href="#">Type de cours : {{$newSeance->prenom}}</a></li></td>
-                <td><li><a href="#">Date de cours : {{$newSeance->Type_Cours}}</a></li></td>
-            <td><li><a href="#">Horaire : {{$newSeance->Date_Cours }}</a> </li></td>
-            <td><li><a href="#">Numero : {{$newSeance->Horaire}}</a></li></td><br><br>
+<td><li><a href="#">Type de cours : {{$newSeance->Type_Cours}}</a></li></td>
+                  <td><li><a href="#">Formateur: {{$newSeance['Liste_Formateurs']}}</a></li>  </td>
+                <td><li><a href="#">Candidat: {{$newSeance['Liste_candidats']}}</a></li>  </td>
+                
+                <td><li><a href="#">Date de cours : {{$newSeance->Date_Cours }}</a></li></td>
+            <td><li><a href="#">Horaire : {{$newSeance->Horaire}}</a> </li></td>
+            <td><li><a href="#">Durée : {{$newSeance->Duree}}</a></li></td>
+             <td><li><a href="#">Montant : {{$newSeance->Montant}}</a></li></td><br><br>
             <td><li> <button type="button" class="btn btn-warning" onclick="printContent('div1')" style="margin-left: 100px;margin-top: -40px"> <i class="fa fa-print"></i> imprimer</button>
 
 
