@@ -99,9 +99,7 @@
                         </ul>
                     </li>
                     <!-- Control Sidebar Toggle Button -->
-                    <li>
-                        <a href="#" data-toggle="control-sidebar"><i class="fa fa-gears"></i></a>
-                    </li>
+                  
                 </ul>
             </div>
         </nav>
@@ -129,7 +127,7 @@
 
                     </a>
 </li>
- <li class="active">
+ <li >
                    <a href="auto_ecole">
                       <i class="fa fa-fw fa-home"></i>
                         <span>Auto Ecole</span>
@@ -144,7 +142,7 @@
               </a>
                 </li>
 
-                <li>
+                <li class="active">
                    <a href="crudFormateur">
                         <i class="fa fa-fw fa-users"></i>  <span>Formateurs</span>
                  </a>
@@ -230,8 +228,8 @@
             </h1>
             <ol class="breadcrumb">
                 <li><a href="#"><i class="fa fa-dashboard"></i>Acceuil</a></li>
-                <li><a href="crudMoniteur">Gestion Formateurs</a></li>
-                <li><a href="ajoutMoniteur">Ajouter moiteurs</a></li>
+                <li><a href="http://localhost/Auto_ecole/public/crudFormateur">Gestion Formateurs</a></li>
+                <li><a href="http://localhost/Auto_ecole/public/ajoutFormateur">Ajouter Formateurs</a></li>
 
             </ol>
         </section>
