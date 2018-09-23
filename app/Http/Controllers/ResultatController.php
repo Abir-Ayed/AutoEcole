@@ -5,6 +5,8 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Resultat;
 use App\Candidat;
+use App\Examen;
+use DB;
 class ResultatController extends Controller 
 {
 
@@ -33,26 +35,36 @@ class ResultatController extends Controller
       //   die('tt');
 
     //dd($request);
- $candidats=Candidat::all();
+ //$candidats=Candidat::all();
+    $examens=Examen::all();
       if($request->isMethod('POST')){
          // dd($request);
-        
+        $this->validate($request,[
+      'candidat'=>'required',
+     'note_examen1'=>'required',
+     
+     'note_examen2'=>'required',
+     'etat'=>'required',
+     'description'=>'required',
+
+
+ ]);
+        $examenId=DB::table('examens')->where('Liste_candidats',$request->input('candidat'))->value('id');
           $newResultat=new Resultat();
 
-          $newResultat->examen_id=1;
+          $newResultat->examen_id=$examenId;
            $newResultat->candidat=$request->input('candidat');
            $newResultat->note_examen1=$request->input('note_examen1');
             $newResultat->note_examen2=$request->input('note_examen2');
            $newResultat->etat=$request->input('etat');
            $newResultat->description=$request->input('description');
 
-
            $newResultat->save();
 
           return redirect('crudResultat');
   }
   //dd($request->all());
-      return view('crudResultat.ajoutResultat',compact('candidats'));
+      return view('crudResultat.ajoutResultat',compact('candidats'),compact('examens'));
 
 
 
@@ -61,26 +73,40 @@ class ResultatController extends Controller
 
  public function update(Request $request,$id)
   {
-    if($request->isMethod('POST')){
+   $examens=Examen::all();
+      if($request->isMethod('POST')){
          // dd($request);
-        
-          $newResultat=Resultat::find($id);
+        $this->validate($request,[
+      'candidat'=>'required',
+     'note_examen1'=>'required',
+     
+     'note_examen2'=>'required',
+     'etat'=>'required',
+     'description'=>'required',
 
-           $newResultat->examen_id=$request->input('examen_id');
-           $newResultat->resultat=$request->input('note_examen');
+
+ ]);
+        $examenId=DB::table('examens')->where('Liste_candidats',$request->input('candidat'))->value('id');
+          $newResultat=new Resultat();
+
+          $newResultat->examen_id=$examenId;
+           $newResultat->candidat=$request->input('candidat');
+           $newResultat->note_examen1=$request->input('note_examen1');
+            $newResultat->note_examen2=$request->input('note_examen2');
            $newResultat->etat=$request->input('etat');
            $newResultat->description=$request->input('description');
-
 
            $newResultat->save();
 
           return redirect('crudResultat');
   }
+  
+  
       else {
 
           $newResultat=Resultat::find($id);
 
-          return view('crudResultat.editResultat',compact('newResultat'));
+          return view('crudResultat.editResultat',compact('newResultat'),compact('candidats'));
 
       }
   }

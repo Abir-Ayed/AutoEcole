@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>AdminLTE 2 | Widgets</title>
+    <title>Auto Ecole</title>
     <!-- Tell the browser to be responsive to screen width -->
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
     <!-- Bootstrap 3.3.7 -->
@@ -81,9 +81,9 @@
         <!-- Logo -->
         <a href="../index2.html" class="logo">
             <!-- mini logo for sidebar mini 50x50 pixels -->
-            <span class="logo-mini"><b>A</b>LT</span>
+            <span class="logo-mini"><b>A</b>EC</span>
             <!-- logo for regular state and mobile devices -->
-            <span class="logo-lg"><b>Admin</b>LTE</span>
+            <span class="logo-lg"><b>Auto Ecole</b></span>
         </a>
         <!-- Header Navbar: style can be found in header.less -->
         <nav class="navbar navbar-static-top">
@@ -100,94 +100,26 @@
                     <!-- Messages: style can be found in dropdown.less-->
 
 
-                    <ul class="dropdown-menu">
-                        <li class="header">You have 4 messages</li>
-                        <li>
-                            <!-- inner menu: contains the actual data -->
-                            <ul class="menu">
-                                <li><!-- start message -->
-                                    <a href="#">
-                                        <div class="pull-left">
-                                            <img src="Admin/dist/img/user.png" class="img-circle" alt="User Image">
-                                        </div>
-                                        <h4>
-                                            Support Team
-                                            <small><i class="fa fa-clock-o"></i> 5 mins</small>
-                                        </h4>
-                                        <p>Why not buy a new awesome theme?</p>
-                                    </a>
-                                </li>
-                                <!-- end message -->
-                                <li>
-                                    <a href="#">
-                                        <div class="pull-left">
-                                            <img src="Admin/dist/img/user.png" class="img-circle" alt="User Image">
-                                        </div>
-                                        <h4>
-                                            AdminLTE Design Team
-                                            <small><i class="fa fa-clock-o"></i> 2 hours</small>
-                                        </h4>
-                                        <p>Why not buy a new awesome theme?</p>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#">
-                                        <div class="pull-left">
-                                            <img src="Admin/dist/img/user.png" class="img-circle" alt="User Image">
-                                        </div>
-                                        <h4>
-                                            Developers
-                                            <small><i class="fa fa-clock-o"></i> Today</small>
-                                        </h4>
-                                        <p>Why not buy a new awesome theme?</p>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#">
-                                        <div class="pull-left">
-                                            <img src="Admin/dist/img/user.png" class="img-circle" alt="User Image">
-                                        </div>
-                                        <h4>
-                                            Sales Department
-                                            <small><i class="fa fa-clock-o"></i> Yesterday</small>
-                                        </h4>
-                                        <p>Why not buy a new awesome theme?</p>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#">
-                                        <div class="pull-left">
-                                            <img src="Admin/dist/img/user.png" class="img-circle" alt="User Image">
-                                        </div>
-                                        <h4>
-                                            Reviewers
-                                            <small><i class="fa fa-clock-o"></i> 2 days</small>
-                                        </h4>
-                                        <p>Why not buy a new awesome theme?</p>
-                                    </a>
-                                </li>
-                            </ul>
-                        </li>
-                        <li class="footer"><a href="#">See All Messages</a></li>
-                    </ul>
-                    </li>
+                   
                     <!-- Notifications: style can be found in dropdown.less -->
 
 
                     <!-- User Account: style can be found in dropdown.less -->
                     <li class="dropdown user user-menu">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                            <img src="Admin/dist/img/user.png" class="user-image" alt="User Image">
+                            <img src="{{asset('Admin/dist/img/user.png')}}" class="user-image" alt="User Image">
                             <span class="hidden-xs">Admin</span>
                         </a>
                         <ul class="dropdown-menu">
                             <!-- User image -->
                             <li class="user-header">
-                                <img src="Admin/dist/img/user.png" class="img-circle" alt="User Image">
+                                <img src="{'asset('Admin/dist/img/user.png')}}" class="img-circle" alt="User Image">
 
                                 <p>
-                                    Alexander Pierce - Web Developer
-                                    <small>Member since Nov. 2012</small>
+                                  
+                                @if(Auth::check())
+                                      {{Auth::user()->name}}
+                                      @endif</p>
                                 </p>
                             </li>
                             <!-- Menu Body -->
@@ -201,15 +133,17 @@
                                     <a href="#" class="btn btn-default btn-flat">Profile</a>
                                 </div>
                                 <div class="pull-right">
-                                    <a href="#" class="btn btn-default btn-flat">Sign out</a>
+                                   <a href="{{ route('logout') }}" class="btn btn-default btn-flat"   onclick="event.preventDefault();
+                                                     document.getElementById('logout-form').submit();">Déconnexion</a>
                                 </div>
+                                <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                                        @csrf
+                                    </form>
                             </li>
                         </ul>
                     </li>
                     <!-- Control Sidebar Toggle Button -->
-                    <li>
-                        <a href="#" data-toggle="control-sidebar"><i class="fa fa-gears"></i></a>
-                    </li>
+                   
                 </ul>
             </div>
         </nav>
@@ -224,83 +158,104 @@
             <!-- Sidebar user panel -->
             <div class="user-panel">
                 <div class="pull-left image">
-                    <img src="Admin/dist/img/user.png" class="img-circle" alt="User Image">
+                    <img src="{{asset('Admin/dist/img/user.png')}}" class="img-circle" alt="User Image">
                 </div>
                 <div class="pull-left info">
                     <p>Admin</p>
-                    <a href="#"><i class="fa fa-circle text-success"></i> Online</a>
+                    <a href="#"><i class="fa fa-circle text-success"></i> en ligne</a>
                 </div>
             </div>
 
-             <ul class="sidebar-menu" data-widget="tree">
+              <ul class="sidebar-menu" data-widget="tree">
+<br>
+               <li class="treeview">
+                    <a href="#">
+                        <i class="fa fa-dashboard"></i> <span>Acceuil</span>
 
-                                <li >
-                                
-                                    <a href="/moniteur/Moniteur">
-                                        <i class="fa fa-dashboard"></i> <span>Acceuil</span>
+                    </a>
+</li>
+ <li class="active">
+                   <a href="auto_ecole">
+                      <i class="fa fa-fw fa-home"></i>
+                        <span>Auto Ecole</span>
 
-                                    </a>
-                                </li>
+              </a>
+                </li>
+ <li>
+                   <a href="crudMoniteur">
+                        <i class="fa fa-fw fa-users"></i>  
+                        <span>Moniteurs</span>
 
-                                <li >
-                                    <a href="crudCandidats">
-                                        <i class="fa fa-fw fa-users"></i> <span>Candidats</span>
+              </a>
+                </li>
 
-                                    </a>
+                <li>
+                   <a href="crudFormateur">
+                        <i class="fa fa-fw fa-users"></i>  <span>Formateurs</span>
+                 </a>
+                </li>
+   
 
-                                </li>
-                                <li>
-                                    <a href="#">
-                                        <i class="fa fa-files-o"></i>
-                                        <span> Consulter Paiements</span>
 
-                                    </a>
 
-                                </li>
 
-                                <li>
-                                    <a href="crudSeance">
-                                        <i class="fa fa-book"></i>
-                                        <span>Séances</span>
+                <li >
+                    <a href="crudCandidats">
+                        <i class="fa fa-fw fa-users"></i> <span>Candidats</span>
 
-                </span>
-                                    </a>
-
-                                </li>
-                                <li>
-                                    <a href="crudExamen">
-                                        <i class="fa fa-edit"></i>
-                                        <span>Examens</span>
-
-                                    </a>
-
-                                </li>
-                                <li>
-                                    <a href="crudMoniteur">
-                                        <i class="fa fa-fw fa-users"></i> <span>Moniteurs</span>
-
-                                    </a>
-
-                                </li>
-                                <li>
-                                    <a href="crudFormateur">
-                                        <i class="fa fa-fw fa-users"></i> <span>Formateurs</span>
-
-                                    </a>
-
-                                </li>
-                                <li >
-                                    <a href="#">
-                                        <i class="fa fa-fw fa-graduation-cap"></i> <span>Résultats</span>
-                                        <span class="pull-right-container">
+                    
+</a>
+                </li>
+               <li class="treeview">
+                    <a href="#">
+                        <i class="fa fa-book"></i>
+                        <span>Séances</span>
+                        <span class="pull-right-container">
                   <i class="fa fa-angle-left pull-right"></i>
                 </span>
+                    </a>
+                    <ul class="treeview-menu">
+                        <li><a href="crudSeancePratique"><i class="fa fa-circle-o"></i>Séances Pratiques</a></li>
+                        <li><a href="crudSeance"><i class="fa fa-circle-o"></i> Séances Théoriques</a></li>
+
+                    </ul>
+                </li>
+                <li >
+                    <a href="crudExamen">
+
+                    <i class="fa fa-edit"></i>
+                    <span>Examens</span>
+
+                    </a>
+
+                </li>
+                 
+                <li>
+                                    <a href="crudResultat">
+                                        <i class="fa fa-fw fa-graduation-cap"></i> <span>Résultats</span>
+                                       
+                </span>
                                     </a>
 
-                                </li>
+                                </li> 
+                
+                <li >
+                                    <a href="crudFacture">
+                                        <i class="fa fa-fw fa-calculator"></i> <span>Facture</span>
 
+                </span>
+                                    </a>
 
+                                </li> 
+   <li >
 
+                    <a href="crudAlertes">
+                      <i class="fa fa-bell-o"></i>
+
+                        <span> Alertes</span>
+</a>
+                    </li>
+     
 
 
 
@@ -311,7 +266,17 @@
     <!-- Content Wrapper. Contains page content -->
     <div class="content-wrapper">
         <!-- Content Header (Page header) -->
+ <section class="content-header">
+            <h1>
+                Gestion Auto Ecoles
+            </h1>
+            <ol class="breadcrumb">
+                <li><a href="#"><i class="fa fa-dashboard"></i>Acceuil</a></li>
+                <li><a href="http://localhost/Auto_ecole/public/auto_ecole">Gestion Auto Ecoles</a></li>
+                <li><a href="http://localhost/Auto_ecole/public/editAuto/{id}">Modifier Auto Ecoles</a></li>
 
+            </ol>
+        </section>
         <!-- Main content -->
         <section class="content" style="margin-left: 400px;padding-top:100px;width: 1100px;height:100px;"
                  };
